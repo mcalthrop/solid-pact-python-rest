@@ -15,7 +15,7 @@ Tasks and subtasks for building the bread-recipes app (SolidJS + Python REST + O
 
 ## 3. Python REST API
 
-- [ ] **3.1** Create the Python project layout, dependency files, and a minimal ASGI app (e.g. FastAPI) wired for local dev.
+- [x] **3.1** Create the Python project layout, dependency files, and a minimal ASGI app (e.g. FastAPI) wired for local dev.
 - [ ] **3.2** Implement a data-access abstraction and a static implementation (files under repo) so swapping to DB/CMS later does not reshape route handlers.
 - [ ] **3.3** Implement REST handlers to match the OpenAPI spec (response shapes and status codes); keep behaviour aligned with the spec.
 - [ ] **3.4** Tests with 100% coverage and a coverage gate in CI for the API package; add `README.md` for install, run, and test commands.

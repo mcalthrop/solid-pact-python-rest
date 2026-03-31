@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "node -e \"console.log('api: build placeholder (Python API in PLAN section 3)')\"",
-    "dev": "node -e \"console.log('api: dev placeholder')\"",
-    "lint": "node -e \"console.log('api: lint placeholder')\"",
-    "test": "node -e \"console.log('api: test placeholder')\""
+    "build": "python -m compileall -q recipes_api",
+    "dev": "python -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000",
+    "lint": "python -m compileall -q recipes_api",
+    "test": "python -m pytest"
   }
 }
