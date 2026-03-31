@@ -1,0 +1,44 @@
+[
+  {
+    "id": "country-loaf",
+    "title": "Simple country loaf",
+    "summary": "A reliable white loaf with a thin crust—good for sandwiches or toast.",
+    "imageUrl": "https://picsum.photos/seed/country-loaf-thumb/400/300",
+    "imageUrlLarge": "https://picsum.photos/seed/country-loaf-large/1200/800",
+    "ingredients": [
+      "500 g strong white bread flour",
+      "10 g fine sea salt",
+      "7 g dried yeast",
+      "350 ml cool water"
+    ],
+    "steps": [
+      "Mix flour, salt, and yeast, then add water and bring together into a rough dough.",
+      "Knead until smooth and elastic, then first rise until doubled.",
+      "Shape, proof in a tin or banneton, then bake until deep golden.",
+      "Cool fully on a rack before slicing."
+    ],
+    "prepTimeMinutes": 30,
+    "bakeTimeMinutes": 35
+  },
+  {
+    "id": "seeded-sourdough",
+    "title": "Seeded sourdough",
+    "summary": "Tangy sourdough with sunflower and sesame for extra crunch.",
+    "imageUrl": "https://picsum.photos/seed/seeded-sourdough-thumb/400/300",
+    "imageUrlLarge": "https://picsum.photos/seed/seeded-sourdough-large/1200/800",
+    "ingredients": [
+      "400 g strong bread flour",
+      "100 g wholemeal flour",
+      "300 g active sourdough starter",
+      "10 g salt",
+      "50 g mixed seeds",
+      "220 ml water"
+    ],
+    "steps": [
+      "Autolyse flours and water, then fold in starter and salt.",
+      "Bulk ferment with stretch-and-folds until airy.",
+      "Shape, cold proof overnight, bake with steam then finish dry.",
+      "Cool before cutting."
+    ]
+  }
+]

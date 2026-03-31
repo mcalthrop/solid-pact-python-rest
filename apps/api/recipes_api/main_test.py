@@ -1,4 +1,4 @@
-"""Smoke tests for the minimal ASGI app (PLAN 3.1)."""
+"""Smoke tests for the minimal ASGI app (``main``)."""
 
 from fastapi.testclient import TestClient
 
