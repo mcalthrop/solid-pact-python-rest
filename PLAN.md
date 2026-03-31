@@ -10,8 +10,8 @@ Tasks and subtasks for building the bread-recipes app (SolidJS + Python REST + O
 
 ## 2. OpenAPI as single source of truth
 
-- [ ] **2.1** Author the OpenAPI spec for recipes (list + detail, shared schemas for overview vs full recipe, image URLs).
-- [ ] **2.2** Store the spec in a shared location (e.g. `packages/openapi` or `openapi/`) and add CI validation (lint/validate the spec on every PR).
+- [x] **2.1** Author the OpenAPI spec for recipes (list + detail, shared schemas for overview vs full recipe, image URLs).
+- [x] **2.2** Store the spec in a shared location (e.g. `packages/openapi` or `openapi/`) and add CI validation (lint/validate the spec on every PR).
 
 ## 3. Python REST API
 

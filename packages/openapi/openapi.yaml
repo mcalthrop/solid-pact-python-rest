@@ -1,0 +1,164 @@
+openapi: 3.1.0
+info:
+  title: Bread Recipes API
+  description: REST API for browsing bread recipes (list overview and full detail).
+  version: 0.1.0
+  license:
+    name: MIT
+    identifier: MIT
+
+# v1 is intentionally public (read-only). Add `security` schemes here when auth exists.
+security: []
+
+servers:
+  - url: http://127.0.0.1:8000
+    description: Local development (bind address may differ)
+  - url: /
+    description: Relative to deployed origin
+
+paths:
+  /recipes:
+    get:
+      operationId: listRecipes
+      summary: List bread recipes
+      description: Returns a minimal overview for each recipe, including a thumbnail image URL.
+      tags: [Recipes]
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RecipeSummary"
+        "400":
+          description: Malformed request (reserved for future query parameters).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /recipes/{recipeId}:
+    get:
+      operationId: getRecipeById
+      summary: Get one recipe by identifier
+      description: Returns full recipe content, including a larger image URL for the same photo as the list view.
+      tags: [Recipes]
+      parameters:
+        - $ref: "#/components/parameters/RecipeId"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecipeDetail"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+components:
+  parameters:
+    RecipeId:
+      name: recipeId
+      in: path
+      required: true
+      description: Stable identifier for the recipe.
+      schema:
+        type: string
+        minLength: 1
+
+  responses:
+    NotFound:
+      description: Recipe does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+    InternalError:
+      description: Unexpected server error.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+
+  schemas:
+    ErrorMessage:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+          description: Human-readable error description.
+
+    RecipeSummary:
+      type: object
+      description: Overview shown on the home page (list).
+      required: [id, title, summary, imageUrl]
+      properties:
+        id:
+          type: string
+          description: Unique recipe identifier (used in `/recipes/{recipeId}`).
+        title:
+          type: string
+          example: Seeded sourdough
+        summary:
+          type: string
+          description: Short teaser for the recipe card.
+        imageUrl:
+          type: string
+          format: uri
+          description: Thumbnail image for the list view.
+
+    RecipeDetail:
+      type: object
+      description: Full recipe for the detail page.
+      required:
+        - id
+        - title
+        - summary
+        - imageUrl
+        - imageUrlLarge
+        - ingredients
+        - steps
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        summary:
+          type: string
+        imageUrl:
+          type: string
+          format: uri
+          description: Same logical photo as the list; suitable for smaller placements.
+        imageUrlLarge:
+          type: string
+          format: uri
+          description: Larger version of the same photo for the recipe page.
+        ingredients:
+          type: array
+          items:
+            type: string
+          description: Ingredient lines as displayed to the baker.
+        steps:
+          type: array
+          items:
+            type: string
+          description: Ordered steps to make the bread.
+        prepTimeMinutes:
+          type: integer
+          minimum: 0
+          description: Optional active preparation time in minutes.
+        bakeTimeMinutes:
+          type: integer
+          minimum: 0
+          description: Optional bake time in minutes.
+
+tags:
+  - name: Recipes
+    description: Bread recipe resources
