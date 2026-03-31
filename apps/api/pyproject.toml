@@ -22,9 +22,6 @@ dev = [
 [tool.hatch.build.targets.wheel]
 packages = ["recipes_api"]
 
-[tool.hatch.build.targets.sdist]
-include = ["recipes_api"]
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
