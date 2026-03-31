@@ -1,0 +1,11 @@
+{
+  "name": "web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node -e \"console.log('web: build placeholder')\"",
+    "dev": "node -e \"console.log('web: dev placeholder')\"",
+    "lint": "node -e \"console.log('web: lint placeholder')\"",
+    "test": "node -e \"console.log('web: test placeholder')\""
+  }
+}
