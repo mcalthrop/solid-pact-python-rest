@@ -2,6 +2,18 @@
 
 Monorepo for the bread recipes app (SolidJS, Python REST, OpenAPI, Pact).
 
+## OpenAPI contract
+
+The REST API is defined in **`packages/openapi/openapi.yaml`** (shared by the Python API and the front end). Lint it with **[Redocly](https://redocly.com/docs/cli/)** from the repo root:
+
+```bash
+pnpm --filter @solid-pact/openapi run lint
+```
+
+The **Validate OpenAPI** workflow (`.github/workflows/validate-openapi.yml`) runs that command on pushes to `main` and on every pull request.
+
+When you add or upgrade Node dependencies, run **`pnpm install`** with the **pnpm** version pinned in **`packageManager`** (via Corepack). Using a different pnpm release can rewrite **`pnpm-lock.yaml`** in an incompatible way (for example changing the lockfile format).
+
 ## Node.js
 
 Use **[nvm](https://github.com/nvm-sh/nvm)** so your runtime matches CI. The repo pins **Node `24.14.0`** in both **`.nvmrc`** and the root **`package.json`** `engines.node` field.

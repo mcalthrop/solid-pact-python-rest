@@ -1,0 +1,8 @@
+extends:
+  - recommended
+
+rules:
+  # Public read-only API; no auth in v1.
+  security-defined: off
+  # Localhost is documented for developers; production uses relative `/`.
+  no-server-example.com: off

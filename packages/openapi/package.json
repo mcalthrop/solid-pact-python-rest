@@ -1,0 +1,12 @@
+{
+  "name": "@solid-pact/openapi",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node -e \"console.log('@solid-pact/openapi: no bundle; validate with lint')\"",
+    "lint": "redocly lint openapi.yaml"
+  },
+  "devDependencies": {
+    "@redocly/cli": "1.31.0"
+  }
+}
