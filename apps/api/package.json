@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "python -m compileall -q recipes_api",
-    "dev": "python -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000",
-    "lint": "python -m compileall -q recipes_api",
-    "test": "python -m pytest"
+    "build": "python3 -m compileall -q recipes_api",
+    "dev": "python3 -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000",
+    "lint": "python3 -m compileall -q recipes_api",
+    "test": "python3 -m pytest"
   }
 }

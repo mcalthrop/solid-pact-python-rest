@@ -20,7 +20,7 @@ pip install -e ".[dev]"
 ## Run (development)
 
 ```bash
-python -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000
+python3 -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
 Open `http://127.0.0.1:8000/docs` for interactive OpenAPI UI, or `GET /health` for a simple JSON response.
