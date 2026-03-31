@@ -25,6 +25,10 @@ python3 -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000
 
 Open `http://127.0.0.1:8000/docs` for interactive OpenAPI UI, or `GET /health` for a simple JSON response.
 
+## Data layer
+
+Recipe payloads match **`packages/openapi/openapi.yaml`**. The **`RecipeRepository`** protocol and **`StaticRecipeRepository`** implementation live under **`recipes_api/`**; static content is **`recipes_api/data/recipes.json`** (a JSON array of full recipe objects). HTTP routes will use this in a later PLAN task; swapping to a database or CMS means providing another **`RecipeRepository`** implementation without changing route signatures.
+
 ## Monorepo scripts
 
 From the repository root, Turborepo delegates to this package’s `package.json` scripts (see root `README.md`).
