@@ -4,18 +4,27 @@ Monorepo for the bread recipes app (SolidJS, Python REST, OpenAPI, Pact).
 
 ## Node.js
 
-Use **[nvm](https://github.com/nvm-sh/nvm)** so everyone runs the same major version as CI. The repo pins a release line in **`.nvmrc`**; install it once, then select it in each shell:
+Use **[nvm](https://github.com/nvm-sh/nvm)** so your runtime matches CI. The repo pins **Node `24.14.0`** in both **`.nvmrc`** and the root **`package.json`** `engines.node` field.
+
+From the repository root:
 
 ```bash
 nvm install
-nvm use
 ```
 
-The minimum supported version is declared under **`engines`** in the root **`package.json`**. With **`engine-strict=true`** in **`.npmrc`**, `pnpm` will refuse to run if your Node version is older than that minimum. Newer Node releases (for example the current LTS) are fine; use **`.nvmrc`** when you want the same patch release as everyone else.
+If your shell does not switch versions automatically after `nvm install`, run `nvm use` so `node -v` prints `v24.14.0`.
+
+With **`engine-strict=true`** in **`.npmrc`**, `pnpm` will not run unless the active Node version satisfies **`engines.node`**.
 
 ## Package manager
 
-Use **pnpm** only. Do not use `npm install` or `yarn`; this repository sets `packageManager` in the root `package.json` and `package-manager-strict` in `.npmrc`.
+Use **pnpm** only. The root **`package.json`** declares:
+
+- **`packageManager`**: `pnpm@10.18.1`
+- **`engines.pnpm`**: `>=10.18.1`
+- **`engines.npm`**: a non-semver reminder (`please-use-pnpm`) so mistaken `npm install` attempts are visibly wrong
+
+**`package-manager-strict`** in **`.npmrc`** enforces the declared package manager.
 
 ```bash
 pnpm install
@@ -24,7 +33,7 @@ pnpm install
 Install pnpm via Corepack if needed:
 
 ```bash
-corepack enable && corepack prepare pnpm@9.15.9 --activate
+corepack enable && corepack prepare pnpm@10.18.1 --activate
 ```
 
 See [pnpm installation](https://pnpm.io/installation) for other options.
@@ -34,21 +43,23 @@ See [pnpm installation](https://pnpm.io/installation) for other options.
 All root **`package.json`** scripts delegate to **Turborepo**, which runs the matching script in each workspace (e.g. `apps/web`, `apps/api`). Run them from the repository root with **pnpm** only:
 
 ```bash
-pnpm run build
-pnpm run dev
-pnpm run lint
-pnpm run test
+pnpm build
+pnpm dev
+pnpm lint
+pnpm test
 ```
+
+(`pnpm run <script>` is equivalent if you prefer the explicit form.)
 
 To run a script in a single workspace, use **pnpm**’s filter (examples):
 
 ```bash
-pnpm --filter web run build
-pnpm --filter api run test
+pnpm --filter web build
+pnpm --filter api test
 ```
 
 Or use Turborepo’s filter directly:
 
 ```bash
-pnpm exec turbo run build --filter=web
+pnpm turbo build --filter=web
 ```

@@ -1,9 +1,11 @@
 {
   "name": "solid-pact-python-rest",
   "private": true,
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@10.18.1",
   "engines": {
-    "node": ">=22.14.0"
+    "node": "24.14.0",
+    "pnpm": ">=10.18.1",
+    "npm": "please-use-pnpm"
   },
   "scripts": {
     "build": "turbo run build",
