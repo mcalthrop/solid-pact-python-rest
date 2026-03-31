@@ -4,7 +4,7 @@ Tasks and subtasks for building the bread-recipes app (SolidJS + Python REST + O
 
 ## 1. Monorepo foundation
 
-- [ ] **1.1** Initialise Turborepo with pnpm workspaces; root `package.json`, `turbo.json`, and workspace layout (e.g. `apps/web`, `apps/api`, `packages/` as needed).
+- [x] **1.1** Initialise Turborepo with pnpm workspaces; root `package.json`, `turbo.json`, and workspace layout (e.g. `apps/web`, `apps/api`, `packages/` as needed).
 - [ ] **1.2** Pin Node: `.nvmrc`, `engines` in root `package.json`, and a short note in the root README on required Node version.
 - [ ] **1.3** Root-level scripts that delegate to packages; ensure `pnpm` is the only package manager documented.
 
