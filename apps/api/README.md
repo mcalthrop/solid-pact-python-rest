@@ -28,3 +28,7 @@ Open `http://127.0.0.1:8000/docs` for interactive OpenAPI UI, or `GET /health` f
 ## Monorepo scripts
 
 From the repository root, Turborepo delegates to this package’s `package.json` scripts (see root `README.md`).
+
+## IDE / type checking
+
+After **`pip install -e ".[dev]"`**, select the interpreter at **`apps/api/.venv/bin/python`** (or equivalent) in your editor so imports such as **`recipes_api`** resolve. **`pyrightconfig.json`** in this directory points Pyright/basedpyright at that venv and **`recipes_api/py.typed`** marks the package for typing tools.
