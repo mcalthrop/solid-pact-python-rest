@@ -1,0 +1,8 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/apps/api/.venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "cSpell.words": [
+        "dataclass",
+        "dataclasses"
+    ]
+}

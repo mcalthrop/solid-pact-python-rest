@@ -1,0 +1,17 @@
+---
+description: Prefer idiomatic Python in generated and edited code
+globs: "**/*.py"
+alwaysApply: false
+---
+
+# Idiomatic Python
+
+When writing or changing Python in this project:
+
+- Always use `TypedDict` instead of plain `dict` for structured key/value shapes.
+- In tests, use `pytest.raises` to assert exceptions are raised correctly.
+- Wherever possible, always use `@pytest.mark.parametrize` to cover multiple cases without duplicating test logic.
+- Prefer clear, idiomatic patterns over clever or non-Pythonic style (e.g. use comprehensions, `enumerate`, `zip`, context managers, and standard library helpers when they improve readability).
+- Follow common conventions: meaningful names, small focused functions, and types or docstrings where they clarify intent.
+- Prefer built-ins and the standard library before adding dependencies, unless the project already uses a specific library for the task.
+- Keep code straightforward: avoid unnecessary abstraction, metaprogramming, or micro-optimisations unless the user asks for them.

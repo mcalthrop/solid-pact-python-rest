@@ -2,6 +2,12 @@
 
 Monorepo for the bread recipes app (SolidJS, Python REST, OpenAPI, Pact).
 
+This repository is **designed to be used with [Cursor](https://cursor.com)** (the VS Code–based editor with integrated AI).
+
+Shared editor settings live under **`.vscode/`**, and Cursor-specific rules live under **`.cursor/`**.
+
+You can work in other editors, but Cursor is the intended environment.
+
 ## OpenAPI contract
 
 The REST API is defined in **`packages/openapi/openapi.yaml`** (shared by the Python API and the front end). Lint it with **[Redocly](https://redocly.com/docs/cli/)** from the repo root:
