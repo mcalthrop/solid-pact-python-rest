@@ -6,6 +6,8 @@
     "build": "node -e \"console.log('web: build placeholder')\"",
     "dev": "node -e \"console.log('web: dev placeholder')\"",
     "lint": "node -e \"console.log('web: lint placeholder')\"",
+    "openapi:generate": "node -e \"console.log('web: openapi:generate placeholder')\"",
+    "openapi:validate": "node -e \"console.log('web: openapi:validate placeholder')\"",
     "test": "node -e \"console.log('web: test placeholder')\""
   }
 }

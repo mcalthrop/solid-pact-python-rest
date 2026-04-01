@@ -9,7 +9,16 @@ FastAPI ASGI service: **`GET /health`**, **`GET /recipes`**, and **`GET /recipes
 
 ## Setup
 
-From `apps/api`:
+From the **repository root**, **`pnpm install`** runs this package’s **`postinstall`**: create **`apps/api/.venv`** if it is missing, then **`pip install -e .`** inside it so **`datamodel-code-generator`** and the rest of the core dependencies are available to **`pnpm openapi:generate`**.
+
+For tests and optional dev tools, from **`apps/api`** with the venv activated:
+
+```bash
+source .venv/bin/activate
+pip install -e ".[dev]"
+```
+
+Alternatively, create the venv and install everything in one go manually:
 
 ```bash
 python3 -m venv .venv
@@ -20,8 +29,10 @@ pip install -e ".[dev]"
 ## Run (development)
 
 ```bash
-python3 -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000
+pnpm dev
 ```
+
+(or **`.venv/bin/python -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000`**)
 
 Open `http://127.0.0.1:8000/docs` for interactive OpenAPI UI, or `GET /health` for a simple JSON response.
 
@@ -34,11 +45,13 @@ pnpm openapi:generate
 pnpm openapi:validate
 ```
 
+**`pnpm openapi:generate`** runs **`.venv/bin/python -m recipes_api.openapi_codegen`** (after **`pnpm install`**, which creates **`apps/api/.venv`** via **`postinstall`**). **`datamodel-code-generator`** is a normal dependency in **`pyproject.toml`**.
+
 CI runs **`pnpm openapi:validate`** after **`pnpm openapi:generate`** (see `.github/workflows/ci.yml`). Runtime handlers continue to use **`TypedDict`** types in **`models.py`**; the generated Pydantic models are the checked mirror of the spec.
 
 ## Data layer
 
-Recipe payloads match **`packages/openapi/openapi.yaml`**. The **`RecipeRepository`** protocol and **`StaticRecipeRepository`** implementation live under **`recipes_api/`**; static content is **`recipes_api/data/recipes.json`** (a JSON array of full recipe objects). HTTP handlers use **`RecipeRepository`** for **`GET /recipes`** and **`GET /recipes/{recipe_id}`**; swapping to a database or CMS means providing another implementation without changing route signatures.
+Recipe payloads match **`packages/openapi/openapi.yaml`**. The **`RecipeRepository`** protocol and **`StaticRecipeRepository`** implementation live under **`recipes_api/`**; static content is **`apps/api/data/recipes.json`** (a JSON array of full recipe objects). HTTP handlers use **`RecipeRepository`** for **`GET /recipes`** and **`GET /recipes/{recipe_id}`**; swapping to a database or CMS means providing another implementation without changing route signatures.
 
 ## Monorepo scripts
 

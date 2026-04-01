@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "python3 -m compileall -q recipes_api",
-    "dev": "python3 -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000",
-    "openapi:generate": "python3 scripts/generate_openapi_models.py",
+    "build": ".venv/bin/python -m compileall -q recipes_api",
+    "dev": ".venv/bin/python -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000",
+    "openapi:generate": ".venv/bin/python -m recipes_api.openapi_codegen",
     "openapi:validate": "bash scripts/validate_openapi_generated.sh",
-    "lint": "python3 -m compileall -q recipes_api",
-    "test": "python3 -m pytest"
+    "lint": ".venv/bin/python -m compileall -q recipes_api",
+    "test": ".venv/bin/python -m pytest -v",
+    "postinstall": "bash -e -c 'test -d .venv || python3 -m venv .venv; .venv/bin/python -m pip install -e .'"
   }
 }
