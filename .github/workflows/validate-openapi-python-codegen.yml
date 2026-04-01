@@ -31,7 +31,7 @@ jobs:
       - name: Fail if generated models are out of sync with the spec
         run: |
           git diff --exit-code -- apps/api/recipes_api/generated/
-          if [ -n "$(git status --porcelain -- apps/api/recipes_api/generated/)" ]; then
+          if [[ -n "$(git status --porcelain -- apps/api/recipes_api/generated/)" ]]; then
             echo "Untracked or uncommitted changes under apps/api/recipes_api/generated/. Regenerate and commit."
             git status --porcelain -- apps/api/recipes_api/generated/
             exit 1
