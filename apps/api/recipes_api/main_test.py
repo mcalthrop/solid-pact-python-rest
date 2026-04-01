@@ -3,16 +3,7 @@
 import importlib
 from unittest.mock import patch
 
-from fastapi.testclient import TestClient
-
 import recipes_api.main as main_module
-
-
-def test_health_returns_ok_status() -> None:
-    client = TestClient(main_module.app)
-    response = client.get("/health")
-    assert response.status_code == 200
-    assert response.json() == {"status": "ok"}
 
 
 def test_app_metadata_comes_from_load_openapi_info() -> None:

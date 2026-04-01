@@ -1,18 +1,11 @@
 """ASGI application entrypoint."""
 
-from typing import TypedDict
-
 from fastapi import FastAPI
 
+from recipes_api.health import health_router
 from recipes_api.openapi_paths import resolve_openapi_spec_path
 from recipes_api.openapi_spec import load_openapi_info
-
-
-class HealthPayload(TypedDict):
-    """Response body for the health check."""
-
-    status: str
-
+from recipes_api.recipes import recipes_router
 
 _openapi_info = load_openapi_info(resolve_openapi_spec_path())
 
@@ -22,8 +15,5 @@ app = FastAPI(
     description=_openapi_info["description"],
 )
 
-
-@app.get("/health")
-def health() -> HealthPayload:
-    """Liveness endpoint for local development and process managers."""
-    return {"status": "ok"}
+app.include_router(health_router)
+app.include_router(recipes_router)
