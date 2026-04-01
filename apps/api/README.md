@@ -25,6 +25,16 @@ python3 -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000
 
 Open `http://127.0.0.1:8000/docs` for interactive OpenAPI UI, or `GET /health` for a simple JSON response.
 
+## OpenAPI → Pydantic (generated)
+
+**`recipes_api/generated/openapi_models.py`** is produced from **`packages/openapi/openapi.yaml`** using **`datamodel-code-generator`**. After you change the spec, regenerate and commit the output (from the repository root):
+
+```bash
+pnpm --filter api run generate:openapi-models
+```
+
+CI fails if the committed generated files do not match the spec (**Validate OpenAPI Python codegen** workflow). Runtime handlers continue to use **`TypedDict`** types in **`models.py`**; the generated Pydantic models are the checked mirror of the spec.
+
 ## Data layer
 
 Recipe payloads match **`packages/openapi/openapi.yaml`**. The **`RecipeRepository`** protocol and **`StaticRecipeRepository`** implementation live under **`recipes_api/`**; static content is **`recipes_api/data/recipes.json`** (a JSON array of full recipe objects). HTTP handlers use **`RecipeRepository`** for **`GET /recipes`** and **`GET /recipes/{recipe_id}`**; swapping to a database or CMS means providing another implementation without changing route signatures.
