@@ -1,0 +1,16 @@
+---
+description: After a PR is merged, sync local git and remove the merged feature branch
+globs:
+alwaysApply: true
+---
+
+# Post-merge git cleanup
+
+When the user indicates a pull request has been merged (or asks to clean up after a merge), run this sequence in the repo:
+
+1. **`git fetch origin --prune`** — update remote refs and drop stale remote-tracking branches.
+2. **`git checkout main`** — switch to **`main`**.
+3. **`git pull origin main`** — fast-forward local **`main`** to match **`origin/main`**.
+4. **Delete the local branch that was merged** — use **`git branch -d <branch>`** first. If Git reports the branch is “not fully merged” (common after a **squash** merge), delete it with **`git branch -D <branch>`** instead, since the work is already on **`main`** under a different commit.
+
+Execute these steps yourself (do not only tell the user to run them) unless the environment cannot access git.
