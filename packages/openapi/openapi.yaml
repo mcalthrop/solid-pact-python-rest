@@ -41,7 +41,7 @@ paths:
         "500":
           $ref: "#/components/responses/InternalError"
 
-  /recipes/{recipeId}:
+  /recipes/{recipe_id}:
     get:
       operationId: getRecipeById
       summary: Get one recipe by identifier
@@ -64,7 +64,7 @@ paths:
 components:
   parameters:
     RecipeId:
-      name: recipeId
+      name: recipe_id
       in: path
       required: true
       description: Stable identifier for the recipe.
@@ -102,7 +102,7 @@ components:
       properties:
         id:
           type: string
-          description: Unique recipe identifier (used in `/recipes/{recipeId}`).
+          description: Unique recipe identifier (used in `/recipes/{recipe_id}`).
         title:
           type: string
           example: Seeded sourdough

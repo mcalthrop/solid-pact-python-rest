@@ -22,7 +22,7 @@ dev = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["recipes_api"]
-exclude = ["**/recipes_api/*_test.py"]
+exclude = ["**/recipes_api/**/*_test.py"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "recipes_api/data/recipes.json" = "recipes_api/data/recipes.json"

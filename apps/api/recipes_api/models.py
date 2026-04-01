@@ -13,7 +13,7 @@ class RecipeSummary(TypedDict):
 
 
 class RecipeDetail(TypedDict):
-    """Full recipe (``GET /recipes/{recipeId}``)."""
+    """Full recipe (``GET /recipes/{recipe_id}``)."""
 
     id: str
     title: str
