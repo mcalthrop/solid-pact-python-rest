@@ -117,8 +117,8 @@ def test_duplicate_ids_raise(tmp_path: Path) -> None:
         StaticRecipeRepository(data_path=path)
 
 
-def test_bundled_recipes_json_loads() -> None:
-    """Packaged ``recipes.json`` loads (wheel/sdist layout)."""
+def test_resolve_recipes_json_path_loads_recipes() -> None:
+    """``recipes.json`` resolved via ``resolve_recipes_json_path`` loads successfully."""
     repo = StaticRecipeRepository(data_path=resolve_recipes_json_path())
     summaries = repo.list_summaries()
     ids = [summary["id"] for summary in summaries]
