@@ -1,6 +1,6 @@
 # Bread Recipes API (Python)
 
-FastAPI ASGI service: **`GET /health`**, **`GET /recipes`**, and **`GET /recipes/{recipeId}`**; further PLAN work covers coverage and tooling.
+FastAPI ASGI service: **`GET /health`**, **`GET /recipes`**, and **`GET /recipes/{recipe_id}`**; further PLAN work covers coverage and tooling.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ Open `http://127.0.0.1:8000/docs` for interactive OpenAPI UI, or `GET /health` f
 
 ## Data layer
 
-Recipe payloads match **`packages/openapi/openapi.yaml`**. The **`RecipeRepository`** protocol and **`StaticRecipeRepository`** implementation live under **`recipes_api/`**; static content is **`recipes_api/data/recipes.json`** (a JSON array of full recipe objects). HTTP handlers use **`RecipeRepository`** for **`GET /recipes`** and **`GET /recipes/{recipeId}`**; swapping to a database or CMS means providing another implementation without changing route signatures.
+Recipe payloads match **`packages/openapi/openapi.yaml`**. The **`RecipeRepository`** protocol and **`StaticRecipeRepository`** implementation live under **`recipes_api/`**; static content is **`recipes_api/data/recipes.json`** (a JSON array of full recipe objects). HTTP handlers use **`RecipeRepository`** for **`GET /recipes`** and **`GET /recipes/{recipe_id}`**; swapping to a database or CMS means providing another implementation without changing route signatures.
 
 ## Monorepo scripts
 

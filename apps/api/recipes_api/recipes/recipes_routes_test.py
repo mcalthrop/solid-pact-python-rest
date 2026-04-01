@@ -43,7 +43,8 @@ def client(tmp_path: Path) -> Iterator[TestClient]:
     repo = StaticRecipeRepository(data_path=path)
 
     app.dependency_overrides[get_recipe_repository] = lambda: repo
-    yield TestClient(app)
+    with TestClient(app) as test_client:
+        yield test_client
     app.dependency_overrides.clear()
 
 
