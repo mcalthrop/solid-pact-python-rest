@@ -1,4 +1,4 @@
-"""Load OpenAPI document metadata from the monorepo ``packages/openapi/openapi.yaml`` file."""
+"""Load OpenAPI document metadata from a YAML spec file."""
 
 from __future__ import annotations
 
@@ -16,32 +16,20 @@ class OpenApiInfo(TypedDict):
     description: str
 
 
-def monorepo_root() -> Path:
-    """Repository root (parent of ``apps/``, ``packages/``, …)."""
-    # recipes_api/main.py -> recipes_api -> apps/api -> apps -> repo root
-    return Path(__file__).resolve().parent.parent.parent.parent
-
-
-def default_openapi_spec_path() -> Path:
-    """Path to the canonical OpenAPI YAML checked into the monorepo."""
-    return monorepo_root() / "packages" / "openapi" / "openapi.yaml"
-
-
-def load_openapi_info(path: Path | None = None) -> OpenApiInfo:
+def load_openapi_info(path: Path) -> OpenApiInfo:
     """Read ``info.title``, ``info.version``, and ``info.description`` from the YAML spec."""
-    spec_path = path if path is not None else default_openapi_spec_path()
-    if not spec_path.is_file():
+    if not path.is_file():
         msg = (
-            f"OpenAPI spec not found at {spec_path}. "
+            f"OpenAPI spec not found at {path}. "
             "Run the API from the monorepo checkout so packages/openapi is available."
         )
         raise FileNotFoundError(msg)
 
-    raw: object = yaml.safe_load(spec_path.read_text(encoding="utf-8"))
-    if not isinstance(raw, dict):
+    parsed = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(parsed, dict):
         raise ValueError("OpenAPI document root must be a mapping")
-    document = cast(dict[str, Any], raw)
-    info_raw = document.get("info")
+    root = cast(dict[str, Any], parsed)
+    info_raw = root.get("info")
     if not isinstance(info_raw, dict):
         raise ValueError("OpenAPI document must contain an info object")
     info = cast(dict[str, Any], info_raw)

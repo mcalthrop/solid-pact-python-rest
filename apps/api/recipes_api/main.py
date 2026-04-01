@@ -4,6 +4,7 @@ from typing import TypedDict
 
 from fastapi import FastAPI
 
+from recipes_api.openapi_paths import resolve_openapi_spec_path
 from recipes_api.openapi_spec import load_openapi_info
 
 
@@ -13,7 +14,7 @@ class HealthPayload(TypedDict):
     status: str
 
 
-_openapi_info = load_openapi_info()
+_openapi_info = load_openapi_info(resolve_openapi_spec_path())
 
 app = FastAPI(
     title=_openapi_info["title"],
