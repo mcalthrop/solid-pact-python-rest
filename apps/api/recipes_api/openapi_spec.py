@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, TypedDict, cast
+from typing import TypedDict
 
 import yaml
+from pydantic import BaseModel, ConfigDict, ValidationError
 
 
 class OpenApiInfo(TypedDict):
@@ -14,6 +15,24 @@ class OpenApiInfo(TypedDict):
     title: str
     version: str
     description: str
+
+
+class _OpenApiInfoBlock(BaseModel):
+    """``info`` object: only the fields we need; other OpenAPI keys are ignored."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    title: str
+    version: str
+    description: str
+
+
+class _OpenApiRootForInfo(BaseModel):
+    """Minimal root shape: must include ``info``; other top-level keys are ignored."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    info: _OpenApiInfoBlock
 
 
 def load_openapi_info(path: Path) -> OpenApiInfo:
@@ -26,23 +45,13 @@ def load_openapi_info(path: Path) -> OpenApiInfo:
         raise FileNotFoundError(msg)
 
     parsed = yaml.safe_load(path.read_text(encoding="utf-8"))
-    if not isinstance(parsed, dict):
-        raise ValueError("OpenAPI document root must be a mapping")
-    root = cast(dict[str, Any], parsed)
-    info_raw = root.get("info")
-    if not isinstance(info_raw, dict):
-        raise ValueError("OpenAPI document must contain an info object")
-    info = cast(dict[str, Any], info_raw)
+    try:
+        root = _OpenApiRootForInfo.model_validate(parsed)
+    except ValidationError as exc:
+        raise ValueError("OpenAPI document is invalid or missing required info fields") from exc
 
-    title = info.get("title")
-    version = info.get("version")
-    description = info.get("description")
-    if not isinstance(title, str) or not isinstance(version, str) or not isinstance(
-        description,
-        str,
-    ):
-        raise ValueError(
-            "OpenAPI info.title, info.version, and info.description must be strings",
-        )
-
-    return OpenApiInfo(title=title, version=version, description=description)
+    return OpenApiInfo(
+        title=root.info.title,
+        version=root.info.version,
+        description=root.info.description,
+    )
