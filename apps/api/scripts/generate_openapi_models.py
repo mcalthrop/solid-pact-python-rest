@@ -8,9 +8,12 @@ import subprocess
 import sys
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-OPENAPI_YAML = REPO_ROOT / "packages" / "openapi" / "openapi.yaml"
-OUTPUT = REPO_ROOT / "apps" / "api" / "recipes_api" / "generated" / "openapi_models.py"
+# Run with ``apps/api`` on the path (``pip install -e .`` or ``PYTHONPATH=.``).
+from recipes_api.openapi_paths import resolve_openapi_spec_path
+
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+_API_ROOT = _SCRIPTS_DIR.parent
+OUTPUT = _API_ROOT / "recipes_api" / "generated" / "openapi_models.py"
 
 
 def _datamodel_codegen() -> str:
@@ -28,14 +31,15 @@ def _datamodel_codegen() -> str:
 
 
 def main() -> None:
-    if not OPENAPI_YAML.is_file():
-        print(f"OpenAPI spec not found: {OPENAPI_YAML}", file=sys.stderr)
+    openapi_yaml = resolve_openapi_spec_path()
+    if not openapi_yaml.is_file():
+        print(f"OpenAPI spec not found: {openapi_yaml}", file=sys.stderr)
         sys.exit(1)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     cmd = [
         _datamodel_codegen(),
         "--input",
-        str(OPENAPI_YAML),
+        str(openapi_yaml),
         "--input-file-type",
         "openapi",
         "--output",
