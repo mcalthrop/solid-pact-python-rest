@@ -10,13 +10,9 @@ You can work in other editors, but Cursor is the intended environment.
 
 ## OpenAPI contract
 
-The REST API is defined in **`packages/openapi/openapi.yaml`** (shared by the Python API and the front end). Lint it with **[Redocly](https://redocly.com/docs/cli/)** from the repo root:
+The REST API is defined in **`packages/openapi/openapi.yaml`** (shared by the Python API and the front end). From the repository root, **`pnpm lint`** runs **[Redocly](https://redocly.com/docs/cli/)** on that spec (via **`@solid-pact/openapi`**) together with the other workspace lint tasks.
 
-```bash
-pnpm --filter @solid-pact/openapi run lint
-```
-
-The **Validate OpenAPI** workflow (`.github/workflows/validate-openapi.yml`) runs that command on pushes to `main` and on every pull request.
+The **CI** workflow (`.github/workflows/ci.yml`) runs **`pnpm lint`**, **`pnpm test`**, **`pnpm openapi:generate`**, and **`pnpm openapi:validate`** (among the other setup steps) on pushes to `main` and on every pull request.
 
 When you add or upgrade Node dependencies, run **`pnpm install`** with the **pnpm** version pinned in **`packageManager`** (via Corepack). Using a different pnpm release can rewrite **`pnpm-lock.yaml`** in an incompatible way (for example changing the lockfile format).
 
@@ -65,9 +61,9 @@ pnpm build
 pnpm dev
 pnpm lint
 pnpm test
+pnpm openapi:generate
+pnpm openapi:validate
 ```
-
-(`pnpm run <script>` is equivalent if you prefer the explicit form.)
 
 To run a script in a single workspace, use **pnpm**’s filter (examples):
 

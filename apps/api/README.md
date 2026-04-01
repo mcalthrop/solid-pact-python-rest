@@ -30,10 +30,11 @@ Open `http://127.0.0.1:8000/docs` for interactive OpenAPI UI, or `GET /health` f
 **`recipes_api/generated/openapi_models.py`** is produced from **`packages/openapi/openapi.yaml`** using **`datamodel-code-generator`**. After you change the spec, regenerate and commit the output (from the repository root):
 
 ```bash
-pnpm --filter api run generate:openapi-models
+pnpm openapi:generate
+pnpm openapi:validate
 ```
 
-CI fails if the committed generated files do not match the spec (**Validate OpenAPI Python codegen** workflow). Runtime handlers continue to use **`TypedDict`** types in **`models.py`**; the generated Pydantic models are the checked mirror of the spec.
+CI runs **`pnpm openapi:validate`** after **`pnpm openapi:generate`** (see `.github/workflows/ci.yml`). Runtime handlers continue to use **`TypedDict`** types in **`models.py`**; the generated Pydantic models are the checked mirror of the spec.
 
 ## Data layer
 

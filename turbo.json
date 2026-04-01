@@ -10,6 +10,12 @@
       "persistent": true
     },
     "lint": {},
+    "openapi:generate": {
+      "cache": false
+    },
+    "openapi:validate": {
+      "cache": false
+    },
     "test": {}
   }
 }
