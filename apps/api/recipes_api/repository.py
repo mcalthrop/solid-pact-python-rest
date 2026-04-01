@@ -35,10 +35,10 @@ class RecipeRepository(Protocol):
 
 
 class StaticRecipeRepository:
-    """Load recipes from a JSON file committed with the package."""
+    """Load recipes from a JSON file."""
 
-    def __init__(self, data_path: Path | None = None) -> None:
-        self._path = data_path or (Path(__file__).resolve().parent / "data" / "recipes.json")
+    def __init__(self, data_path: Path) -> None:
+        self._path = data_path
         self._by_id: dict[str, RecipeDetail] = {}
         self._order: list[str] = []
         self._load()
