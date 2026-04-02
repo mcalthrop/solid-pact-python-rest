@@ -11,7 +11,7 @@ Use the repo **`.nvmrc`** (Node **24.14.0**) and **pnpm** (**>=10.18.1**) as in 
 From the **repository root**:
 
 ```bash
-nvm use
+nvm install
 pnpm install
 ```
 
