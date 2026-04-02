@@ -1,4 +1,6 @@
 {
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
   "[javascript]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
