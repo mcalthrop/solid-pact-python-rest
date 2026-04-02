@@ -1,5 +1,5 @@
 {
-  "include": ["recipes_api"],
+  "include": ["app"],
   "exclude": [".venv", "**/__pycache__"],
   "pythonVersion": "3.12",
   "venvPath": ".",

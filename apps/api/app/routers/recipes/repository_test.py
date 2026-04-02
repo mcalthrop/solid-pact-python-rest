@@ -1,4 +1,4 @@
-"""Tests for ``repository`` (static JSON loader and bundled data)."""
+"""Tests for ``routers.recipes.repository`` (static JSON loader and bundled data)."""
 
 from __future__ import annotations
 
@@ -8,8 +8,8 @@ from typing import Any
 
 import pytest
 
-from recipes_api.data_paths import resolve_recipes_json_path
-from recipes_api.repository import StaticRecipeRepository
+from .data_paths import resolve_recipes_json_path
+from .repository import StaticRecipeRepository
 
 
 @pytest.fixture

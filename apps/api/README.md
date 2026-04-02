@@ -2,6 +2,12 @@
 
 FastAPI ASGI service: **`GET /health`**, **`GET /recipes`**, and **`GET /recipes/{recipe_id}`**; further PLAN work covers coverage and tooling.
 
+### Package layout
+
+- **`app/routers/`** — FastAPI **`APIRouter`** trees: **`health/`** (liveness) and **`recipes/`** (OpenAPI contract).
+- **`app/`** (elsewhere) — app entry (**`main.py`**), **`models`**, etc.; recipe persistence lives under **`app/routers/recipes/`** (**`repository.py`**).
+- **`app/openapi/`** — spec path resolution, **`info`** loading, **`codegen`** entrypoint, and generated Pydantic models (**`generated/openapi_models.py`**).
+
 ## Prerequisites
 
 - Python **3.12** or newer
@@ -32,26 +38,26 @@ pip install -e ".[dev]"
 pnpm dev
 ```
 
-(or **`.venv/bin/python -m uvicorn recipes_api.main:app --reload --host 127.0.0.1 --port 8000`**)
+(or **`.venv/bin/python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000`**)
 
 Open `http://127.0.0.1:8000/docs` for interactive OpenAPI UI, or `GET /health` for a simple JSON response.
 
 ## OpenAPI → Pydantic (generated)
 
-**`recipes_api/generated/openapi_models.py`** is produced from **`packages/openapi/openapi.yaml`** using **`datamodel-code-generator`**. After you change the spec, regenerate and commit the output (from the repository root):
+**`app/openapi/generated/openapi_models.py`** is produced from **`packages/openapi/openapi.yaml`** using **`datamodel-code-generator`**. After you change the spec, regenerate and commit the output (from the repository root):
 
 ```bash
 pnpm openapi:generate
 pnpm openapi:validate
 ```
 
-**`pnpm openapi:generate`** runs **`.venv/bin/python -m recipes_api.openapi_codegen`** (after **`pnpm install`**, which creates **`apps/api/.venv`** via **`postinstall`**). **`datamodel-code-generator`** is a normal dependency in **`pyproject.toml`**.
+**`pnpm openapi:generate`** runs **`.venv/bin/python -m app.openapi.codegen`** (after **`pnpm install`**, which creates **`apps/api/.venv`** via **`postinstall`**). **`datamodel-code-generator`** is a normal dependency in **`pyproject.toml`**.
 
 CI runs **`pnpm openapi:validate`** after **`pnpm openapi:generate`** (see `.github/workflows/ci.yml`). Runtime handlers continue to use **`TypedDict`** types in **`models.py`**; the generated Pydantic models are the checked mirror of the spec.
 
 ## Data layer
 
-Recipe payloads match **`packages/openapi/openapi.yaml`**. The **`RecipeRepository`** protocol and **`StaticRecipeRepository`** implementation live under **`recipes_api/`**; static content is **`apps/api/data/recipes.json`** (a JSON array of full recipe objects). HTTP handlers use **`RecipeRepository`** for **`GET /recipes`** and **`GET /recipes/{recipe_id}`**; swapping to a database or CMS means providing another implementation without changing route signatures.
+Recipe payloads match **`packages/openapi/openapi.yaml`**. The **`RecipeRepository`** protocol and **`StaticRecipeRepository`** implementation live under **`app/routers/recipes/`** (routers depend on them via **`Depends`**); static content is **`app/data/recipes.json`** (a JSON array of full recipe objects). HTTP handlers use **`RecipeRepository`** for **`GET /recipes`** and **`GET /recipes/{recipe_id}`**; swapping to a database or CMS means providing another implementation without changing route signatures.
 
 ## Monorepo scripts
 
@@ -59,7 +65,7 @@ From the repository root, Turborepo delegates to this package’s `package.json`
 
 ## IDE / type checking
 
-After **`pip install -e ".[dev]"`**, point your editor at this virtual environment so imports such as **`recipes_api`** resolve and Pyright/basedpyright match **`pyrightconfig.json`**. **`recipes_api/py.typed`** marks the package for typing tools.
+After **`pip install -e ".[dev]"`**, point your editor at this virtual environment so imports such as **`app`** resolve and Pyright/basedpyright match **`pyrightconfig.json`**. **`app/py.typed`** marks the package for typing tools.
 
 ### VS Code, Cursor, and similar forks
 

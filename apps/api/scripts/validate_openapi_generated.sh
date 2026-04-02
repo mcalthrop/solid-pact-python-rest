@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Fail if recipes_api/generated does not match the working tree (run from repo root via git).
+# Fail if app/openapi/generated does not match the working tree (run from repo root via git).
 set -euo pipefail
 
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null || :)"
@@ -9,7 +9,7 @@ if [[ -z "${ROOT}" ]]; then
 fi
 cd "${ROOT}"
 
-GENERATED_PATH="apps/api/recipes_api/generated"
+GENERATED_PATH="apps/api/app/openapi/generated"
 if ! git diff --quiet -- "${GENERATED_PATH}"; then
   echo "Generated OpenAPI files under ${GENERATED_PATH} are out of date." >&2
   echo "Please run 'pnpm openapi:generate' and commit the updated files." >&2

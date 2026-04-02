@@ -1,4 +1,4 @@
-"""Regenerate ``recipes_api/generated/openapi_models.py`` from ``packages/openapi/openapi.yaml``."""
+"""Regenerate ``app/openapi/generated/openapi_models.py`` from ``packages/openapi/openapi.yaml``."""
 
 import sys
 from pathlib import Path
@@ -9,10 +9,10 @@ from datamodel_code_generator import (
     PythonVersion,
     generate,
 )
-from recipes_api.openapi_paths import resolve_openapi_spec_path
+from app.openapi.paths import resolve_openapi_spec_path
 
-_RECIPES_PKG = Path(__file__).resolve().parent
-OUTPUT = _RECIPES_PKG / "generated" / "openapi_models.py"
+_PKG = Path(__file__).resolve().parent
+_OUTPUT = _PKG / "generated" / "openapi_models.py"
 
 
 def main() -> None:
@@ -20,12 +20,12 @@ def main() -> None:
     if not openapi_yaml.is_file():
         print(f"OpenAPI spec not found: {openapi_yaml}", file=sys.stderr)
         sys.exit(1)
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    _OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     generate(
         openapi_yaml,
         input_filename=openapi_yaml.name,
         input_file_type=InputFileType.OpenAPI,
-        output=OUTPUT,
+        output=_OUTPUT,
         output_model_type=DataModelType.PydanticV2BaseModel,
         disable_timestamp=True,
         target_python_version=PythonVersion.PY_312,
