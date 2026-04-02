@@ -4,7 +4,7 @@ SolidJS + Vite + TypeScript app in the monorepo (`apps/web`). Linting and format
 
 ## Prerequisites
 
-Use the repo **`.nvmrc`** (Node **24.14.0**) and **pnpm** (**>=10.18.1**) as in the [root README](../README.md).
+Use the repo **`.nvmrc`** (Node **24.14.0**) and **pnpm** (**>=10.18.1**) as in the [root README](../../README.md).
 
 ## Install
 
