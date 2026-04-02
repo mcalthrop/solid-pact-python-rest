@@ -19,6 +19,7 @@ dependencies = [
 dev = [
   "httpx==0.28.1",
   "pytest==8.3.5",
+  "pytest-cov==6.0.0",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -29,4 +30,17 @@ exclude = ["**/app/**/*_test.py"]
 testpaths = ["app"]
 pythonpath = ["."]
 python_files = ["*_test.py"]
-addopts = "-q"
+addopts = "-q --cov=app --cov-report=term-missing"
+
+[tool.coverage.run]
+relative_files = true
+source = ["app"]
+omit = ["app/openapi/generated/*"]
+
+[tool.coverage.report]
+fail_under = 100
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+  "^ *\\.\\.\\.$",
+]

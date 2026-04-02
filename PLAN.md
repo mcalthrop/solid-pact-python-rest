@@ -20,7 +20,7 @@ Tasks and subtasks for building the bread-recipes app (SolidJS + Python REST + O
 - [x] **3.3** Wire FastAPI/OpenAPI **`info`** (title, version, description) from **`packages/openapi/openapi.yaml`** so the running app matches the committed spec and those values are not duplicated in code (e.g. `main.py`).
 - [x] **3.4** Implement REST handlers to match the OpenAPI spec (response shapes and status codes); keep behaviour aligned with the spec.
 - [x] **3.5** Generate Pydantic models from **`packages/openapi/openapi.yaml`** (e.g. **datamodel-code-generator**), commit generated output, and add CI that fails when the spec changes without regenerating (drift check).
-- [ ] **3.6** Tests with 100% coverage and a coverage gate in CI for the API package; add `README.md` for install, run, and test commands.
+- [x] **3.6** Tests with 100% coverage and a coverage gate in CI for the API package; add `README.md` for install, run, and test commands.
 - [ ] **3.7** Select and configure a Python import-ordering tool (PEP 8–aligned; e.g. **Ruff**’s isort rules or **isort**), apply it across **`apps/api`**, and document how to run it (CI enforcement can align with §3.6 / §6.1).
 
 ## 4. SolidJS front end
