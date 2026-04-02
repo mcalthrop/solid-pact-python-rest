@@ -1,14 +1,30 @@
 {
   "name": "web",
-  "version": "0.0.0",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "node -e \"console.log('web: build placeholder')\"",
-    "dev": "node -e \"console.log('web: dev placeholder')\"",
-    "lint": "node -e \"console.log('web: lint placeholder')\"",
-    "lint:fix": "node -e \"console.log('web: lint:fix placeholder')\"",
-    "openapi:generate": "node -e \"console.log('web: openapi:generate placeholder')\"",
-    "openapi:validate": "node -e \"console.log('web: openapi:validate placeholder')\"",
-    "test": "node -e \"console.log('web: test placeholder')\""
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "openapi:generate": "node -e \"console.log('web: openapi:generate — see PLAN §4.2')\"",
+    "openapi:validate": "node -e \"console.log('web: openapi:validate — see packages/openapi')\""
+  },
+  "dependencies": {
+    "solid-js": "1.9.12"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.10",
+    "@solidjs/testing-library": "0.8.10",
+    "@types/node": "24.12.0",
+    "jsdom": "29.0.1",
+    "typescript": "5.9.3",
+    "vite": "8.0.3",
+    "vite-plugin-solid": "2.11.11",
+    "vitest": "4.1.2"
   }
 }
