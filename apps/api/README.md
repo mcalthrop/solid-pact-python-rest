@@ -1,6 +1,6 @@
 # Bread Recipes API (Python)
 
-FastAPI ASGI service: **`GET /health`**, **`GET /recipes`**, and **`GET /recipes/{recipe_id}`**; further PLAN work covers coverage and tooling.
+FastAPI ASGI service: **`GET /health`**, **`GET /recipes`**, and **`GET /recipes/{recipe_id}`**.
 
 ### Package layout
 
@@ -31,6 +31,22 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 ```
+
+## Testing
+
+From **`apps/api`** with dev dependencies installed (**`pip install -e ".[dev]"`**):
+
+```bash
+pnpm test
+```
+
+This runs **`pytest`** with **line coverage** for the **`app`** package, **fails under 100%**, and **omits** generated **`app/openapi/generated/`** (codegen output). To run tests without coverage (faster iteration):
+
+```bash
+.venv/bin/python -m pytest --no-cov
+```
+
+Configuration lives in **`pyproject.toml`** (**`[tool.pytest.ini_options]`**, **`[tool.coverage.*]`**).
 
 ## Run (development)
 
@@ -84,4 +100,4 @@ These editors use the **Python** extension (Cursor ships with equivalent behavio
 
 If analysis still looks wrong, reload the window (**Developer: Reload Window** from the Command Palette) after changing the interpreter.
 
-**Why this path:** analysis runs with `sys.path` set for that interpreter; the editable install of **`recipes-api`** is only guaranteed for the venv you created with **`pip install -e ".[dev]"`**.
+**Why this path:** analysis runs with `sys.path` set for that interpreter; the editable install of the **`recipes-api`** package (**`app`**) is only guaranteed for the venv you created with **`pip install -e ".[dev]"`**.

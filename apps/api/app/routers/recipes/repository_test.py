@@ -90,6 +90,29 @@ def test_invalid_file_raises(tmp_path: Path, bad_payload: str) -> None:
         StaticRecipeRepository(data_path=path)
 
 
+def test_array_entry_must_be_object(tmp_path: Path) -> None:
+    path = tmp_path / "bad.json"
+    path.write_text(json.dumps(["not-an-object"]), encoding="utf-8")
+    with pytest.raises(ValueError, match=r"recipes\.json\[0\] must be an object"):
+        StaticRecipeRepository(data_path=path)
+
+
+def test_ingredients_and_steps_must_be_arrays(tmp_path: Path) -> None:
+    row: dict[str, Any] = {
+        "id": "a",
+        "title": "T",
+        "summary": "S",
+        "imageUrl": "https://example.com/1.jpg",
+        "imageUrlLarge": "https://example.com/2.jpg",
+        "ingredients": "not-a-list",
+        "steps": ["mix"],
+    }
+    path = tmp_path / "bad.json"
+    path.write_text(json.dumps([row]), encoding="utf-8")
+    with pytest.raises(ValueError, match="ingredients and steps must be arrays"):
+        StaticRecipeRepository(data_path=path)
+
+
 def test_duplicate_ids_raise(tmp_path: Path) -> None:
     recipes_with_duplicate_ids: list[dict[str, Any]] = [
         {
