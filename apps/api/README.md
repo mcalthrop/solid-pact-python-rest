@@ -15,18 +15,12 @@ FastAPI ASGI service: **`GET /health`**, **`GET /recipes`**, and **`GET /recipes
 
 ## Setup
 
-From the **repository root**, **`pnpm install`** runs this package’s **`postinstall`**: create **`apps/api/.venv`** if it is missing, then **`pip install -e .`** inside it so **`datamodel-code-generator`** and the rest of the core dependencies are available to **`pnpm openapi:generate`**.
+From the **repository root**, **`pnpm install`** runs this package’s **`postinstall`**: create **`apps/api/.venv`** if it is missing, then **`pip install -e ".[dev]"`** so runtime dependencies (**`datamodel-code-generator`**, **FastAPI**, …) and **dev** tools (**`pytest`**, **`ruff`**, …) are available for **`pnpm openapi:generate`**, **`pnpm lint`**, **`pnpm test`**, and **`pnpm lint:fix`**.
 
-For tests and optional dev tools, from **`apps/api`** with the venv activated:
-
-```bash
-source .venv/bin/activate
-pip install -e ".[dev]"
-```
-
-Alternatively, create the venv and install everything in one go manually:
+If you create the venv yourself (without **`pnpm install`**), install the editable package with dev extras:
 
 ```bash
+cd apps/api
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
@@ -50,7 +44,7 @@ Configuration lives in **`pyproject.toml`** (**`[tool.pytest.ini_options]`**, **
 
 ## Import order (Ruff / isort)
 
-Imports are checked with **[Ruff](https://docs.astral.sh/ruff/)** using the **`I`** rules (PEP 8–style ordering compatible with **isort**). Configuration lives under **`[tool.ruff]`** in **`pyproject.toml`** (`known-first-party = ["app"]`; generated OpenAPI models under **`app/openapi/generated/`** are excluded).
+Imports are checked with **[Ruff](https://docs.astral.sh/ruff/)** using the **`I`** rules (PEP 8–style ordering compatible with **isort**). Configuration lives under **`[tool.ruff]`** in **`pyproject.toml`** (`known-first-party = ["app"]`; generated OpenAPI models under **`app/openapi/generated/`** are excluded). **Ruff** is a **dev** dependency; after **[Setup](#setup)** ( **`pnpm install`** or **`pip install -e ".[dev]"`** ), **`apps/api/.venv/bin/ruff`** is available.
 
 Check (matches CI):
 

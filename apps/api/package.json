@@ -10,6 +10,6 @@
     "lint": "pnpm build && .venv/bin/ruff check app",
     "lint:fix": ".venv/bin/ruff check app --fix",
     "test": ".venv/bin/python -m pytest -v",
-    "postinstall": "bash -e -c 'test -d .venv || python3 -m venv .venv; .venv/bin/python -m pip install -e .'"
+    "postinstall": "bash -e -c 'test -d .venv || python3 -m venv .venv; .venv/bin/python -m pip install -e \".[dev]\"'"
   }
 }
