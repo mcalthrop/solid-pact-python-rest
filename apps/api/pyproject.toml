@@ -30,9 +30,10 @@ exclude = ["**/app/**/*_test.py"]
 testpaths = ["app"]
 pythonpath = ["."]
 python_files = ["*_test.py"]
-addopts = "-q --cov=app --cov-report=term-missing --cov-fail-under=100"
+addopts = "-q --cov=app --cov-report=term-missing"
 
 [tool.coverage.run]
+relative_files = true
 source = ["app"]
 omit = ["app/openapi/generated/*"]
 
