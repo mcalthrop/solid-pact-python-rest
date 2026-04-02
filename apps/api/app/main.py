@@ -6,10 +6,10 @@ from fastapi import FastAPI
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
-from app.routers.recipes.data_paths import resolve_recipes_json_path
 from app.openapi.paths import resolve_openapi_spec_path
 from app.openapi.spec import load_openapi_info
 from app.routers import health_router, recipes_router
+from app.routers.recipes.data_paths import resolve_recipes_json_path
 from app.routers.recipes.exceptions import RecipeNotFoundError
 from app.routers.recipes.repository import StaticRecipeRepository
 from app.routers.recipes.state import RecipeAppState

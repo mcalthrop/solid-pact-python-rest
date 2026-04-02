@@ -48,6 +48,22 @@ This runs **`pytest`** with **line coverage** for the **`app`** package, **fails
 
 Configuration lives in **`pyproject.toml`** (**`[tool.pytest.ini_options]`**, **`[tool.coverage.*]`**).
 
+## Import order (Ruff / isort)
+
+Imports are checked with **[Ruff](https://docs.astral.sh/ruff/)** using the **`I`** rules (PEP 8–style ordering compatible with **isort**). Configuration lives under **`[tool.ruff]`** in **`pyproject.toml`** (`known-first-party = ["app"]`; generated OpenAPI models under **`app/openapi/generated/`** are excluded).
+
+Check (matches CI):
+
+```bash
+pnpm lint
+```
+
+Auto-fix import order:
+
+```bash
+pnpm lint:fix
+```
+
 ## Run (development)
 
 ```bash
