@@ -3,7 +3,7 @@
 import importlib
 from unittest.mock import patch
 
-import recipes_api.main as main_module
+import app.main as main_module
 
 
 def test_app_metadata_comes_from_load_openapi_info() -> None:
@@ -12,7 +12,7 @@ def test_app_metadata_comes_from_load_openapi_info() -> None:
         "version": "2.0.0",
         "description": "Loaded via mock",
     }
-    with patch("recipes_api.openapi_spec.load_openapi_info", return_value=fake):
+    with patch("app.openapi.spec.load_openapi_info", return_value=fake):
         importlib.reload(main_module)
         assert main_module.app.title == fake["title"]
         assert main_module.app.version == fake["version"]

@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any, Protocol, cast, runtime_checkable
 
-from recipes_api.models import RecipeDetail, RecipeSummary, recipe_summary_from_detail
+from app.models import RecipeDetail, RecipeSummary, recipe_summary_from_detail
 
 _REQUIRED_DETAIL_KEYS = frozenset(
     {

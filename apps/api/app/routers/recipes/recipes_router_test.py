@@ -1,4 +1,4 @@
-"""Tests for recipe HTTP routes."""
+"""Tests for the recipes router."""
 
 from __future__ import annotations
 
@@ -10,9 +10,9 @@ from typing import Any
 import pytest
 from fastapi.testclient import TestClient
 
-from recipes_api.main import app
-from recipes_api.recipes import get_recipe_repository
-from recipes_api.repository import StaticRecipeRepository
+from app.main import app
+from app.routers.recipes import get_recipe_repository
+from app.routers.recipes.repository import StaticRecipeRepository
 
 
 @pytest.fixture

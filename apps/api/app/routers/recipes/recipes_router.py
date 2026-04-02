@@ -7,16 +7,11 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, Path, status
 from pydantic import BaseModel, ConfigDict
 
-from recipes_api.data_paths import resolve_recipes_json_path
-from recipes_api.models import RecipeDetail, RecipeSummary
-from recipes_api.recipes.exceptions import RecipeNotFoundError
-from recipes_api.repository import RecipeRepository, StaticRecipeRepository
+from app.models import RecipeDetail, RecipeSummary
 
-_repository = StaticRecipeRepository(data_path=resolve_recipes_json_path())
-
-
-def get_recipe_repository() -> RecipeRepository:
-    return _repository
+from .deps import get_recipe_repository
+from .exceptions import RecipeNotFoundError
+from .repository import RecipeRepository
 
 
 class _ErrorMessageBody(BaseModel):

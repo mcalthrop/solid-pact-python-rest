@@ -1,4 +1,4 @@
-"""Tests for ``openapi_spec`` (load ``info`` from YAML)."""
+"""Tests for ``spec`` (load ``info`` from YAML)."""
 
 from __future__ import annotations
 
@@ -8,10 +8,10 @@ from unittest.mock import MagicMock, patch
 import pytest
 from pydantic import ValidationError
 
-from recipes_api.openapi_spec import load_openapi_info
+from app.openapi.spec import load_openapi_info
 
 
-@patch("recipes_api.openapi_spec.yaml.safe_load")
+@patch("app.openapi.spec.yaml.safe_load")
 def test_load_openapi_info_returns_info_from_yaml(mock_safe_load: MagicMock, tmp_path: Path) -> None:
     mock_safe_load.return_value = {
         "info": {
@@ -31,7 +31,7 @@ def test_load_openapi_info_returns_info_from_yaml(mock_safe_load: MagicMock, tmp
     mock_safe_load.assert_called_once()
 
 
-@patch("recipes_api.openapi_spec.yaml.safe_load")
+@patch("app.openapi.spec.yaml.safe_load")
 def test_load_openapi_info_ignores_extra_openapi_keys(mock_safe_load: MagicMock, tmp_path: Path) -> None:
     mock_safe_load.return_value = {
         "openapi": "3.1.0",
@@ -52,7 +52,7 @@ def test_load_openapi_info_ignores_extra_openapi_keys(mock_safe_load: MagicMock,
     }
 
 
-@patch("recipes_api.openapi_spec.yaml.safe_load")
+@patch("app.openapi.spec.yaml.safe_load")
 @pytest.mark.parametrize(
     "parsed",
     [

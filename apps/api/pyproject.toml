@@ -22,14 +22,11 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["recipes_api"]
-exclude = ["**/recipes_api/**/*_test.py"]
-
-[tool.hatch.build.targets.wheel.force-include]
-"data/recipes.json" = "recipes_api/data/recipes.json"
+packages = ["app"]
+exclude = ["**/app/**/*_test.py"]
 
 [tool.pytest.ini_options]
-testpaths = ["recipes_api"]
+testpaths = ["app"]
 pythonpath = ["."]
 python_files = ["*_test.py"]
 addopts = "-q"

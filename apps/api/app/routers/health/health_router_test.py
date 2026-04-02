@@ -1,9 +1,9 @@
-"""Tests for ``health`` routes."""
+"""Tests for the health router."""
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from recipes_api.health import health_router
+from app.routers.health import health_router
 
 
 def test_health_returns_ok_status() -> None:
