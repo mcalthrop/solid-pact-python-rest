@@ -1,14 +1,11 @@
 {
-    "python.defaultInterpreterPath": "${workspaceFolder}/apps/api/.venv/bin/python",
-    "python.terminal.activateEnvironment": true,
-    "[python]": {
-        "editor.codeActionsOnSave": {
-            "source.fixAll.ruff": "explicit",
-            "source.organizeImports.ruff": "explicit"
-        }
-    },
-    "cSpell.words": [
-        "dataclass",
-        "dataclasses"
-    ]
+  "python.defaultInterpreterPath": "${workspaceFolder}/apps/api/.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+  "cSpell.words": ["dataclass", "dataclasses"]
 }
