@@ -20,6 +20,7 @@ dev = [
   "httpx==0.28.1",
   "pytest==8.3.5",
   "pytest-cov==6.0.0",
+  "ruff==0.15.9",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -44,3 +45,14 @@ exclude_lines = [
   "if TYPE_CHECKING:",
   "^ *\\.\\.\\.$",
 ]
+
+[tool.ruff]
+target-version = "py312"
+src = ["app"]
+exclude = ["app/openapi/generated"]
+
+[tool.ruff.lint]
+select = ["I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]

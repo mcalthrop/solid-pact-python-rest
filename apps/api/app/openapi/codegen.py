@@ -9,6 +9,7 @@ from datamodel_code_generator import (
     PythonVersion,
     generate,
 )
+
 from app.openapi.paths import resolve_openapi_spec_path
 
 _PKG = Path(__file__).resolve().parent
