@@ -8,9 +8,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const rootDir = path.join(import.meta.dirname, '..');
-/** Top-level / named `function` declarations (not `typeof x === 'function'`). */
+/** Top-level / named `function` declarations (not `typeof x === 'function'` or `functions:`). */
 const declarationLine =
-  /^\s*(?:export\s+(?:default\s+)?(?:async\s+)?|async\s+)?function\s*\*?\s*(?:[$\w]|\()/;
+  /^\s*(?:export\s+(?:default\s+)?(?:async\s+)?|async\s+)?\bfunction\b\s*\*?\s*(?:[$\w]|\()/;
 
 function walkTsFiles(dir, out) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
