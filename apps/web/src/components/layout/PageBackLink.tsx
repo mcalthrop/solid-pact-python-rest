@@ -6,13 +6,13 @@ type PageBackLinkProps = ParentProps & {
   href: string;
 };
 
-export const PageBackLink = (props: PageBackLinkProps): JSX.Element => (
+export const PageBackLink = ({
+  href,
+  children,
+}: PageBackLinkProps): JSX.Element => (
   <p class="mb-4">
-    <A
-      class={buttonVariants({ variant: 'link', size: 'link' })}
-      href={props.href}
-    >
-      {props.children}
+    <A class={buttonVariants({ variant: 'link', size: 'link' })} href={href}>
+      {children}
     </A>
   </p>
 );

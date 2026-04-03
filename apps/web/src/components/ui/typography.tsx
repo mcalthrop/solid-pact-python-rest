@@ -88,18 +88,17 @@ type RecipeTimesProps = {
   bakeTimeMinutes?: number;
 };
 
-export const RecipeTimes = (props: RecipeTimesProps): JSX.Element => (
-  <Show
-    when={
-      props.prepTimeMinutes !== undefined || props.bakeTimeMinutes !== undefined
-    }
-  >
+export const RecipeTimes = ({
+  prepTimeMinutes,
+  bakeTimeMinutes,
+}: RecipeTimesProps): JSX.Element => (
+  <Show when={prepTimeMinutes !== undefined || bakeTimeMinutes !== undefined}>
     <p class="m-0 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
-      <Show when={props.prepTimeMinutes !== undefined}>
-        <span class="m-0">Prep: {props.prepTimeMinutes} min</span>
+      <Show when={prepTimeMinutes !== undefined}>
+        <span class="m-0">Prep: {prepTimeMinutes} min</span>
       </Show>
-      <Show when={props.bakeTimeMinutes !== undefined}>
-        <span class="m-0">Bake: {props.bakeTimeMinutes} min</span>
+      <Show when={bakeTimeMinutes !== undefined}>
+        <span class="m-0">Bake: {bakeTimeMinutes} min</span>
       </Show>
     </p>
   </Show>

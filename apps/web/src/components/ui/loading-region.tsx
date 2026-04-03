@@ -7,14 +7,18 @@ type LoadingRegionProps = ParentProps & {
   spacing?: 'compact' | 'comfortable';
 };
 
-export const LoadingRegion = (props: LoadingRegionProps): JSX.Element => (
+export const LoadingRegion = ({
+  label,
+  spacing,
+  children,
+}: LoadingRegionProps): JSX.Element => (
   <div
     role="status"
     aria-live="polite"
     aria-busy={true}
-    class={cn(props.spacing === 'comfortable' ? 'space-y-4' : 'space-y-3')}
+    class={cn(spacing === 'comfortable' ? 'space-y-4' : 'space-y-3')}
   >
-    <span class="sr-only">{props.label}</span>
-    {props.children}
+    <span class="sr-only">{label}</span>
+    {children}
   </div>
 );
