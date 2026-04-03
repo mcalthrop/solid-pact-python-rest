@@ -28,7 +28,7 @@ Tasks and subtasks for building the bread-recipes app (SolidJS + Python REST + O
 - [x] **4.1** Scaffold SolidJS + Vite + TypeScript in `apps/web`; **Biome** (lint + format + import organise); Vitest configured; exact dependency versions only; `README.md` for the app.
 - [x] **4.2** Generate or synchronise typed API usage from the OpenAPI spec (client/types) so API calls stay strictly typed.
 - [x] **4.3** App shell: router, layout, and global styles (clean, minimalist, bread-appropriate palette, responsive).
-- [ ] **4.4** Home page: fetch and list bread recipes with overview + thumbnail; navigate to detail on click.
+- [x] **4.4** Home page: fetch and list bread recipes with overview + thumbnail; navigate to detail on click.
 - [ ] **4.5** Recipe page: full recipe content and larger image; deep-linkable route (e.g. by id).
 - [ ] **4.6** MSW for tests; knip configured; Vitest coverage at 100% with a CI gate.
 
