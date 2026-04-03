@@ -33,6 +33,10 @@ Run from **`apps/web`** (or via **`pnpm --filter web <script>`** from the root):
 
 Configuration: **`biome.json`** (Biome **2.4.x**), **`vite.config.ts`** (includes Vitest), **`tsconfig.*.json`**.
 
+## App shell (PLAN §4.3)
+
+Routing uses [**`@solidjs/router`**](https://github.com/solidjs/solid-router): **`Router`** with a shared **`AppShell`** layout (header, main outlet, footer). Routes include **`/`** (home) and **`/recipes/:id`** (detail placeholder until §4.5). Global styles live in **`src/index.css`** (warm bread surfaces, cool complementary accents); layout CSS in **`src/layout/AppShell.css`**.
+
 ## OpenAPI client
 
 The UI uses a **full fetch-based client** generated from **`../../packages/openapi/openapi.yaml`** via [**`@hey-api/openapi-ts`**](https://github.com/hey-api/openapi-ts). Generated output lives under **`src/api/generated/`** (do not edit by hand; regenerate after spec changes).

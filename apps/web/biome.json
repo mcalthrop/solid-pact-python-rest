@@ -17,9 +17,30 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "complexity": {
+        "useArrowFunction": "error"
+      },
+      "nursery": {
+        "useExplicitType": "error"
+      },
+      "style": {
+        "noDefaultExport": "error"
+      }
     }
   },
+  "overrides": [
+    {
+      "includes": ["vite.config.ts", "openapi-ts.config.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ],
   "javascript": {
     "formatter": {
       "quoteStyle": "single",

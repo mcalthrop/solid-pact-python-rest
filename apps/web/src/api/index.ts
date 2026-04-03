@@ -8,22 +8,20 @@ import type { GetRecipeByIdData, ListRecipesData } from './generated/types.gen';
 
 export { apiClient } from './client';
 
-export function listRecipes<ThrowOnError extends boolean = false>(
+export const listRecipes = <ThrowOnError extends boolean = false>(
   options?: Options<ListRecipesData, ThrowOnError>,
-) {
-  return listRecipesSdk({
+): ReturnType<typeof listRecipesSdk<ThrowOnError>> =>
+  listRecipesSdk({
     ...options,
     client: options?.client ?? apiClient,
   });
-}
 
-export function getRecipeById<ThrowOnError extends boolean = false>(
+export const getRecipeById = <ThrowOnError extends boolean = false>(
   options: Options<GetRecipeByIdData, ThrowOnError>,
-) {
-  return getRecipeByIdSdk({
+): ReturnType<typeof getRecipeByIdSdk<ThrowOnError>> =>
+  getRecipeByIdSdk({
     ...options,
     client: options?.client ?? apiClient,
   });
-}
 
 export type * from './generated/types.gen';

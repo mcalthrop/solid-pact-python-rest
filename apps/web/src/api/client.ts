@@ -1,4 +1,5 @@
 import {
+  type Client,
   type ClientOptions,
   createClient,
   createConfig,
@@ -16,6 +17,6 @@ function resolveBaseUrl(): string {
 }
 
 /** Shared fetch client for generated SDK calls (base URL from `VITE_API_BASE_URL`, or local API in dev). */
-export const apiClient = createClient(
+export const apiClient: Client = createClient(
   createConfig<ClientOptions>({ baseUrl: resolveBaseUrl() }),
 );
