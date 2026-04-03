@@ -14,9 +14,18 @@ export const Separator = (props: SeparatorProps): JSX.Element => {
     'decorative',
   ]);
   const orientation = local.orientation ?? 'horizontal';
+  const isSeparator = local.decorative === false;
   return (
+    // biome-ignore lint/a11y/useAriaPropsSupportedByRole: role="separator" supports aria-orientation; Biome does not infer conditional role.
     <div
-      role={local.decorative === false ? 'separator' : undefined}
+      role={isSeparator ? 'separator' : undefined}
+      aria-orientation={
+        isSeparator
+          ? orientation === 'vertical'
+            ? 'vertical'
+            : 'horizontal'
+          : undefined
+      }
       class={cn(
         'shrink-0 bg-border',
         orientation === 'horizontal' ? 'h-px w-full' : 'h-full w-px',

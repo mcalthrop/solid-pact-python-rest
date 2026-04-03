@@ -26,7 +26,7 @@ export const RecipePage = (): JSX.Element => {
   );
 
   return (
-    <article class="w-full" aria-labelledby="recipe-title">
+    <article class="w-full">
       <PageBackLink href="/">← All recipes</PageBackLink>
 
       <Show when={recipe.loading}>
@@ -49,7 +49,11 @@ export const RecipePage = (): JSX.Element => {
 
       <Show when={!recipe.loading && !recipe.error}>
         <Show when={recipe()} keyed>
-          {(detail: RecipeDetail) => <RecipeDetailBody {...detail} />}
+          {(detail: RecipeDetail) => (
+            <section aria-labelledby="recipe-title">
+              <RecipeDetailBody {...detail} />
+            </section>
+          )}
         </Show>
       </Show>
     </article>
