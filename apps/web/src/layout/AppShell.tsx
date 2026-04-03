@@ -3,7 +3,7 @@ import { A } from '@solidjs/router';
 import type { JSX } from 'solid-js';
 import './AppShell.css';
 
-export const AppShell = (props: RouteSectionProps): JSX.Element => (
+export const AppShell = ({ children }: RouteSectionProps): JSX.Element => (
   <div class="shell">
     <header class="shell-header">
       <div class="shell-header-inner">
@@ -15,7 +15,7 @@ export const AppShell = (props: RouteSectionProps): JSX.Element => (
         <p class="site-tagline">Simple loaves, clear steps</p>
       </div>
     </header>
-    <main class="shell-main">{props.children}</main>
+    <main class="shell-main">{children}</main>
     <footer class="shell-footer">
       <p class="shell-footer-note">A bread recipes browser</p>
     </footer>
