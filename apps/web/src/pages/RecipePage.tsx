@@ -1,7 +1,8 @@
 import { useParams } from '@solidjs/router';
+import type { JSX } from 'solid-js';
 import './Page.css';
 
-export default function RecipePage() {
+export const RecipePage = (): JSX.Element => {
   const params = useParams<{ id: string }>();
 
   return (
@@ -15,4 +16,4 @@ export default function RecipePage() {
       </p>
     </section>
   );
-}
+};

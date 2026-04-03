@@ -1,0 +1,16 @@
+---
+description: Named exports only in TypeScript; no default exports
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+alwaysApply: false
+---
+
+# No default exports (TypeScript)
+
+- Prefer **named exports** only: `export const Component = …`, `export { foo }`, and similar.
+- Do **not** add `export default`, including `export { Name as default }`, unless the file is an allowed tooling entrypoint (see below).
+
+**Exception:** `apps/web/vite.config.ts` and `apps/web/openapi-ts.config.ts` may use `export default` because Vite and `@hey-api/openapi-ts` load the config via the module’s default export. Biome disables `style/noDefaultExport` for those paths in `apps/web/biome.json`.
+
+Where this repository runs Biome with `style.noDefaultExport`, that config applies to the linted tree (see `apps/web/biome.json`).
