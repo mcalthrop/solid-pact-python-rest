@@ -8,6 +8,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { LoadingRegion } from '@/components/ui/loading-region';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Heading2, TextLede, TextMuted } from '@/components/ui/typography';
+import { formatFetchError } from '@/lib/format-fetch-error';
 
 export const Home = (): JSX.Element => {
   const [recipes] = createResource(() =>
@@ -35,9 +36,7 @@ export const Home = (): JSX.Element => {
       <Show when={recipes.error} keyed>
         {(err: unknown) => (
           <Alert variant="destructive">
-            <AlertDescription>
-              {err instanceof Error ? err.message : String(err)}
-            </AlertDescription>
+            <AlertDescription>{formatFetchError(err)}</AlertDescription>
           </Alert>
         )}
       </Show>

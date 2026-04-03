@@ -37,8 +37,14 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Knip (web)
+        run: pnpm --filter web knip
+
       - name: Test (API 100% line coverage gate)
         run: pnpm test
+
+      - name: Test web (Vitest coverage gate)
+        run: pnpm --filter web test:coverage
 
       - name: Generate OpenAPI code
         run: pnpm openapi:generate
