@@ -1,22 +1,9 @@
 import { A } from '@solidjs/router';
 import type { JSX } from 'solid-js';
 import { createResource, For, Show } from 'solid-js';
-import type { RecipeSummary } from '../api';
-import { listRecipes } from '../api';
-import './Page.css';
-
-async function loadRecipes(): Promise<RecipeSummary[]> {
-  const res = await listRecipes();
-  if (res.error !== undefined) {
-    const err = res.error;
-    const message =
-      typeof err === 'object' && err !== null && 'message' in err
-        ? String((err as { message: unknown }).message)
-        : 'Could not load recipes.';
-    throw new Error(message);
-  }
-  return res.data ?? [];
-}
+import type { RecipeSummary } from '@/api';
+import { loadRecipes } from '@/lib/loadRecipes';
+import '@/pages/Page.css';
 
 export const Home = (): JSX.Element => {
   const [recipes] = createResource(loadRecipes);
@@ -37,7 +24,7 @@ export const Home = (): JSX.Element => {
         </p>
       </Show>
 
-      <Show when={recipes.error}>
+      <Show when={recipes.error} keyed>
         {(err: unknown) => (
           <p role="alert" class="recipe-list-error">
             {err instanceof Error ? err.message : String(err)}
@@ -69,7 +56,7 @@ export const Home = (): JSX.Element => {
                         src={recipe.imageUrl}
                         alt=""
                         width={320}
-                        height={200}
+                        height={240}
                         loading="lazy"
                         decoding="async"
                       />

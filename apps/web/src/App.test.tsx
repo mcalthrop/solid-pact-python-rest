@@ -1,8 +1,8 @@
 import { render, screen } from '@solidjs/testing-library';
 import { describe, expect, it, vi } from 'vitest';
-import { App } from './App';
+import { App } from '@/App';
 
-vi.mock('./api', () => ({
+vi.mock('@/api', () => ({
   listRecipes: vi.fn().mockResolvedValue({
     data: [],
     error: undefined,

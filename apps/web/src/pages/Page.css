@@ -156,3 +156,97 @@
     padding: 0.75rem;
   }
 }
+
+/* Recipe detail (§4.6) */
+.recipe-detail-back {
+  margin: 0 0 1rem;
+}
+
+.recipe-detail-back-link {
+  font-size: 0.95rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.recipe-detail-back-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.recipe-detail-header {
+  margin-bottom: 1rem;
+}
+
+.recipe-detail-title {
+  margin-bottom: 0.5rem;
+}
+
+.recipe-detail-summary {
+  margin-bottom: 0.75rem;
+}
+
+.recipe-detail-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.recipe-detail-time {
+  margin: 0;
+}
+
+.recipe-detail-hero {
+  margin: 0 0 1.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--border);
+  aspect-ratio: 3 / 2;
+  max-height: min(60vh, 420px);
+}
+
+.recipe-detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.recipe-detail-section {
+  margin-bottom: 1.5rem;
+}
+
+.recipe-detail-h3 {
+  font-family: var(--heading);
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: var(--text-h);
+  margin: 0 0 0.65rem;
+  letter-spacing: -0.02em;
+}
+
+.recipe-detail-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.recipe-detail-list-ingredients {
+  list-style: disc;
+}
+
+.recipe-detail-list-steps {
+  padding-left: 1.5rem;
+}
+
+.recipe-detail-list li {
+  margin-bottom: 0.4rem;
+}
+
+.recipe-detail-list-steps li::marker {
+  font-weight: 500;
+  color: var(--accent);
+}
