@@ -15,20 +15,19 @@ import { cn } from '@/lib/utils';
 
 // biome-ignore lint/nursery/useExplicitType: explicit CVA output type is verbose and harms inference
 export const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
-        default:
-          'bg-[var(--accent)] text-white shadow hover:bg-[var(--accent-hover)]',
+        default: 'bg-primary text-white shadow hover:bg-primary-hover',
         destructive:
           'bg-red-600 text-white shadow-sm hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800',
         outline:
-          'border border-[var(--border)] bg-transparent shadow-sm hover:bg-[var(--accent-bg)] hover:text-[var(--text-h)]',
+          'border border-border bg-transparent shadow-sm hover:bg-accent-subtle hover:text-heading',
         secondary:
-          'bg-[var(--border)] text-[var(--text-h)] shadow-sm hover:bg-[var(--text-muted)]/25',
-        ghost: 'hover:bg-[var(--accent-bg)] hover:text-[var(--text-h)]',
-        link: 'text-[var(--accent)] underline-offset-4 hover:underline',
+          'bg-border text-heading shadow-sm hover:bg-muted-foreground/25',
+        ghost: 'hover:bg-accent-subtle hover:text-heading',
+        link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {
         default: 'h-9 px-4 py-2',

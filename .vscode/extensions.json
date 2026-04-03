@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "biomejs.biome",
+    "bradlc.vscode-tailwindcss",
     "charliermarsh.ruff",
     "ms-python.python",
     "ms-python.vscode-pylance",
