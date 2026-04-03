@@ -2,7 +2,7 @@ import type { RecipeDetail } from '@/api';
 import { getRecipeById } from '@/api';
 
 /** Fetches one recipe by id; throws on transport, 404, or other API errors. */
-export async function loadRecipeDetail(id: string): Promise<RecipeDetail> {
+export const loadRecipeDetail = async (id: string): Promise<RecipeDetail> => {
   const res = await getRecipeById({ path: { recipe_id: id } });
   if (res.error !== undefined) {
     const err = res.error;
@@ -16,4 +16,4 @@ export async function loadRecipeDetail(id: string): Promise<RecipeDetail> {
     throw new Error('Recipe not found.');
   }
   return res.data;
-}
+};

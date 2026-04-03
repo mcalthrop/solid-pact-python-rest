@@ -2,7 +2,7 @@ import type { RecipeSummary } from '@/api';
 import { listRecipes } from '@/api';
 
 /** Fetches recipe summaries for the home list; throws on transport or API error. */
-export async function loadRecipes(): Promise<RecipeSummary[]> {
+export const loadRecipes = async (): Promise<RecipeSummary[]> => {
   const res = await listRecipes();
   if (res.error !== undefined) {
     const err = res.error;
@@ -13,4 +13,4 @@ export async function loadRecipes(): Promise<RecipeSummary[]> {
     throw new Error(message);
   }
   return res.data ?? [];
-}
+};
