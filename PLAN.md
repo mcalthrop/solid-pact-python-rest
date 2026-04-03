@@ -31,7 +31,8 @@ Tasks and subtasks for building the bread-recipes app (SolidJS + Python REST + O
 - [x] **4.4** Home page: fetch and list bread recipes with overview + thumbnail; navigate to detail on click.
 - [x] **4.5** Component library: evaluate options for SolidJS (e.g. **shadcn-solid** with Tailwind vs smaller stacks); record the decision; add the chosen tooling and migrate or adopt components on at least one real screen so the pattern is established.
 - [x] **4.6** Recipe page: full recipe content and larger image; deep-linkable route (e.g. by id).
-- [ ] **4.7** MSW for tests; knip configured; Vitest coverage at 100% with a CI gate.
+- [ ] **4.7** **shadcn-solid adoption (full):** migrate remaining UI (app shell, home, recipe cards and detail sections, and any shared layout) to registry components and Tailwind utilities where it replaces bespoke CSS; align tokens with **`COMPONENT_LIBRARY.md`**; no orphaned hand-rolled controls that duplicate registry patterns. Update **`COMPONENT_LIBRARY.md`** when scope is complete.
+- [ ] **4.8** MSW for tests; knip configured; Vitest coverage at 100% with a CI gate.
 
 ## 5. Contract testing (Pact)
 
