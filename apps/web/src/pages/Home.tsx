@@ -2,11 +2,13 @@ import { A } from '@solidjs/router';
 import type { JSX } from 'solid-js';
 import { createResource, For, Show } from 'solid-js';
 import type { RecipeSummary } from '@/api';
-import { loadRecipes } from '@/lib/loadRecipes';
+import { listRecipes } from '@/api';
 import './Page.css';
 
 export const Home = (): JSX.Element => {
-  const [recipes] = createResource(loadRecipes);
+  const [recipes] = createResource(() =>
+    listRecipes({ throwOnError: true }).then(({ data }) => data ?? []),
+  );
 
   return (
     <section class="page" aria-labelledby="home-heading">

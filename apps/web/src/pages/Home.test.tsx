@@ -62,13 +62,8 @@ describe('Home', () => {
     expect(link.getAttribute('href')).toBe('/recipes/sourdough-1');
   });
 
-  it('shows an alert when the API returns an error payload', async () => {
-    vi.mocked(listRecipes).mockResolvedValue({
-      data: undefined,
-      error: { message: 'Bad gateway' },
-      request: new Request('http://127.0.0.1:8000/recipes'),
-      response: new Response(),
-    });
+  it('shows an alert when the loader throws', async () => {
+    vi.mocked(listRecipes).mockRejectedValue(new Error('Bad gateway'));
     renderHome();
     const alert = await screen.findByRole('alert');
     expect(alert.textContent).toContain('Bad gateway');
