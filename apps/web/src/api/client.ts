@@ -3,7 +3,7 @@ import {
   type ClientOptions,
   createClient,
   createConfig,
-} from '@/api/generated/client';
+} from './generated/client';
 
 function resolveBaseUrl(): string {
   const fromEnv = import.meta.env.VITE_API_BASE_URL;

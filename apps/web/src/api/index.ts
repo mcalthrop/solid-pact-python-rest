@@ -1,15 +1,12 @@
-import { apiClient } from '@/api/client';
+import { apiClient } from './client';
 import {
   getRecipeById as getRecipeByIdSdk,
   listRecipes as listRecipesSdk,
   type Options,
-} from '@/api/generated/sdk.gen';
-import type {
-  GetRecipeByIdData,
-  ListRecipesData,
-} from '@/api/generated/types.gen';
+} from './generated/sdk.gen';
+import type { GetRecipeByIdData, ListRecipesData } from './generated/types.gen';
 
-export { apiClient } from '@/api/client';
+export { apiClient } from './client';
 
 export const listRecipes = <ThrowOnError extends boolean = false>(
   options?: Options<ListRecipesData, ThrowOnError>,
@@ -27,4 +24,4 @@ export const getRecipeById = <ThrowOnError extends boolean = false>(
     client: options?.client ?? apiClient,
   });
 
-export type * from '@/api/generated/types.gen';
+export type * from './generated/types.gen';

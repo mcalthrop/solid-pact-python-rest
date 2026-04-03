@@ -3,7 +3,7 @@ import type { JSX } from 'solid-js';
 import { createResource, For, Show } from 'solid-js';
 import type { RecipeSummary } from '@/api';
 import { loadRecipes } from '@/lib/loadRecipes';
-import '@/pages/Page.css';
+import './Page.css';
 
 export const Home = (): JSX.Element => {
   const [recipes] = createResource(loadRecipes);

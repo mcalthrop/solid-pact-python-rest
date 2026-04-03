@@ -3,7 +3,7 @@ import { render, screen } from '@solidjs/testing-library';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { RecipeSummary } from '@/api';
 import { listRecipes } from '@/api';
-import { Home } from '@/pages/Home';
+import { Home } from './Home';
 
 const renderHome = (): ReturnType<typeof render> =>
   render(() => (

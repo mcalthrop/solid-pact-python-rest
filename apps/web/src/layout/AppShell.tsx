@@ -1,7 +1,7 @@
 import type { RouteSectionProps } from '@solidjs/router';
 import { A } from '@solidjs/router';
 import type { JSX } from 'solid-js';
-import '@/layout/AppShell.css';
+import './AppShell.css';
 
 export const AppShell = ({ children }: RouteSectionProps): JSX.Element => (
   <div class="shell">

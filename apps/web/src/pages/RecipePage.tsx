@@ -3,7 +3,7 @@ import type { JSX } from 'solid-js';
 import { createResource, For, Show } from 'solid-js';
 import type { RecipeDetail } from '@/api';
 import { loadRecipeDetail } from '@/lib/loadRecipeDetail';
-import '@/pages/Page.css';
+import './Page.css';
 
 export const RecipePage = (): JSX.Element => {
   const params = useParams<{ id: string }>();
