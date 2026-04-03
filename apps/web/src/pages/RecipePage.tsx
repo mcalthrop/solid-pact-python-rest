@@ -1,11 +1,13 @@
-import { A, useParams } from '@solidjs/router';
+import { useParams } from '@solidjs/router';
 import type { JSX } from 'solid-js';
 import { createResource, Show } from 'solid-js';
 import type { RecipeDetail } from '@/api';
 import { getRecipeById } from '@/api';
+import { PageBackLink } from '@/components/layout/PageBackLink';
 import { RecipeDetailBody } from '@/components/recipe-detail/RecipeDetailBody';
-import { buttonVariants } from '@/components/ui/button';
-import './Page.css';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { LoadingRegion } from '@/components/ui/loading-region';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export const RecipePage = (): JSX.Element => {
   const params = useParams<{ id: string }>();
@@ -24,30 +26,34 @@ export const RecipePage = (): JSX.Element => {
   );
 
   return (
-    <article class="page recipe-detail" aria-labelledby="recipe-title">
-      <p class="recipe-detail-back">
-        <A class={buttonVariants({ variant: 'link', size: 'link' })} href="/">
-          ← All recipes
-        </A>
-      </p>
+    <article class="w-full">
+      <PageBackLink href="/">← All recipes</PageBackLink>
 
       <Show when={recipe.loading}>
-        <p class="recipe-list-status" aria-live="polite">
-          Loading recipe…
-        </p>
+        <LoadingRegion label="Loading recipe…" spacing="comfortable">
+          <Skeleton class="h-10 w-2/3 max-w-md rounded-md" />
+          <Skeleton class="h-24 w-full rounded-xl" />
+          <Skeleton class="h-56 w-full rounded-xl" />
+        </LoadingRegion>
       </Show>
 
       <Show when={recipe.error} keyed>
         {(err: unknown) => (
-          <p role="alert" class="recipe-list-error">
-            {err instanceof Error ? err.message : String(err)}
-          </p>
+          <Alert variant="destructive">
+            <AlertDescription>
+              {err instanceof Error ? err.message : String(err)}
+            </AlertDescription>
+          </Alert>
         )}
       </Show>
 
       <Show when={!recipe.loading && !recipe.error}>
         <Show when={recipe()} keyed>
-          {(detail: RecipeDetail) => <RecipeDetailBody {...detail} />}
+          {(detail: RecipeDetail) => (
+            <section aria-labelledby="recipe-title">
+              <RecipeDetailBody {...detail} />
+            </section>
+          )}
         </Show>
       </Show>
     </article>

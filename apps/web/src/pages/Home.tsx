@@ -3,7 +3,11 @@ import { createResource, For, Show } from 'solid-js';
 import type { RecipeSummary } from '@/api';
 import { listRecipes } from '@/api';
 import { RecipeCard } from '@/components/RecipeCard';
-import './Page.css';
+import { RecipeList } from '@/components/RecipeList';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { LoadingRegion } from '@/components/ui/loading-region';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Heading2, TextLede, TextMuted } from '@/components/ui/typography';
 
 export const Home = (): JSX.Element => {
   const [recipes] = createResource(() =>
@@ -11,26 +15,30 @@ export const Home = (): JSX.Element => {
   );
 
   return (
-    <section class="page" aria-labelledby="home-heading">
-      <h2 id="home-heading" class="page-title">
+    <section class="w-full" aria-labelledby="home-heading">
+      <Heading2 id="home-heading" class="mb-3">
         Recipes
-      </h2>
-      <p class="lede home-lede">
+      </Heading2>
+      <TextLede class="mb-5">
         Browse sourdough and yeasted breads from the API. Select a recipe for
         full ingredients and steps.
-      </p>
+      </TextLede>
 
       <Show when={recipes.loading}>
-        <p class="recipe-list-status" aria-live="polite">
-          Loading recipes…
-        </p>
+        <LoadingRegion label="Loading recipes…">
+          <Skeleton class="h-9 w-full max-w-md rounded-md" />
+          <Skeleton class="h-36 w-full rounded-xl" />
+          <Skeleton class="h-36 w-full rounded-xl" />
+        </LoadingRegion>
       </Show>
 
       <Show when={recipes.error} keyed>
         {(err: unknown) => (
-          <p role="alert" class="recipe-list-error">
-            {err instanceof Error ? err.message : String(err)}
-          </p>
+          <Alert variant="destructive">
+            <AlertDescription>
+              {err instanceof Error ? err.message : String(err)}
+            </AlertDescription>
+          </Alert>
         )}
       </Show>
 
@@ -38,16 +46,14 @@ export const Home = (): JSX.Element => {
         <Show
           when={(recipes() ?? []).length > 0}
           fallback={
-            <p class="recipe-list-empty">
-              No recipes to show yet. Try again later.
-            </p>
+            <TextMuted>No recipes to show yet. Try again later.</TextMuted>
           }
         >
-          <ul class="recipe-grid">
+          <RecipeList>
             <For each={recipes()}>
               {(recipe: RecipeSummary) => <RecipeCard {...recipe} />}
             </For>
-          </ul>
+          </RecipeList>
         </Show>
       </Show>
     </section>

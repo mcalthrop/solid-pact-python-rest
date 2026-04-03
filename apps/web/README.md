@@ -35,7 +35,7 @@ Configuration: **`biome.json`** (Biome **2.4.x**), **`vite.config.ts`** (include
 
 ## App shell (PLAN §4.3)
 
-Routing uses [**`@solidjs/router`**](https://github.com/solidjs/solid-router): **`Router`** with a shared **`AppShell`** layout (header, main outlet, footer). Routes include **`/`** (home) and **`/recipes/:id`** (detail). Global styles live in **`src/index.css`** (warm bread surfaces, cool complementary accents); layout CSS in **`src/layout/AppShell.css`**.
+Routing uses [**`@solidjs/router`**](https://github.com/solidjs/solid-router): **`Router`** with a shared **`AppShell`** layout (header, main outlet, footer). Routes include **`/`** (home) and **`/recipes/:id`** (detail). Global styles live in **`src/index.css`** (warm bread surfaces, cool complementary accents); the app shell uses Tailwind utilities in **`src/layout/AppShell.tsx`**.
 
 ## Component library (PLAN §4.5)
 

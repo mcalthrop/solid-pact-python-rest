@@ -1,4 +1,10 @@
 {
+  "css.customData": [".vscode/tailwind-css-v4-custom-data.json"],
+  "css.lint.unknownAtRules": "ignore",
+  "files.associations": {
+    "**/apps/web/**/*.css": "tailwindcss"
+  },
+  "tailwindCSS.experimental.configFile": "apps/web/src/index.css",
   "javascript.preferences.quoteStyle": "single",
   "typescript.preferences.quoteStyle": "single",
   "[javascript]": {

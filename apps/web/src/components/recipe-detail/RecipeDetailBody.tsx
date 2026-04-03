@@ -1,5 +1,6 @@
 import type { JSX } from 'solid-js';
 import type { RecipeDetail } from '@/api';
+import { Separator } from '@/components/ui/separator';
 import { RecipeDetailHeader } from './RecipeDetailHeader';
 import { RecipeDetailHero } from './RecipeDetailHero';
 import { RecipeDetailIngredients } from './RecipeDetailIngredients';
@@ -23,6 +24,7 @@ export const RecipeDetailBody = ({
     />
     <RecipeDetailHero imageUrlLarge={imageUrlLarge} />
     <RecipeDetailIngredients ingredients={ingredients} />
+    <Separator class="my-6" decorative />
     <RecipeDetailSteps steps={steps} />
   </>
 );

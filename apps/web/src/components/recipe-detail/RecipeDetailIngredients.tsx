@@ -1,23 +1,21 @@
 import type { JSX } from 'solid-js';
 import { For } from 'solid-js';
 import type { RecipeDetail } from '@/api';
+import { RecipeDetailPanel } from './RecipeDetailPanel';
 
 type RecipeDetailIngredientsProps = Pick<RecipeDetail, 'ingredients'>;
 
 export const RecipeDetailIngredients = ({
   ingredients,
 }: RecipeDetailIngredientsProps): JSX.Element => (
-  <section
-    class="recipe-detail-section"
-    aria-labelledby="recipe-ingredients-heading"
+  <RecipeDetailPanel
+    headingId="recipe-ingredients-heading"
+    heading="Ingredients"
   >
-    <h3 id="recipe-ingredients-heading" class="recipe-detail-h3">
-      Ingredients
-    </h3>
-    <ul class="recipe-detail-list recipe-detail-list-ingredients">
+    <ul class="m-0 list-disc pl-5 leading-relaxed text-foreground marker:text-foreground">
       <For each={ingredients}>
-        {(line: string): JSX.Element => <li>{line}</li>}
+        {(line: string): JSX.Element => <li class="mb-1.5">{line}</li>}
       </For>
     </ul>
-  </section>
+  </RecipeDetailPanel>
 );

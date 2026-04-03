@@ -66,6 +66,28 @@
   }
 }
 
+/*
+ * Theme bridge: maps bread tokens above to Tailwind semantic utilities
+ * (text-foreground, bg-card, border-border, text-primary, font-heading, shadow-bread, …).
+ */
+@theme {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-heading: var(--text-h);
+  --color-muted-foreground: var(--text-muted);
+  --color-border: var(--border);
+  --color-card: var(--social-bg);
+  --color-header: var(--header-bg);
+  --color-footer: var(--footer-bg);
+  --color-primary: var(--accent);
+  --color-primary-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-bg);
+  --color-accent-border: var(--accent-border);
+  --color-code: var(--code-bg);
+  --font-heading: var(--heading);
+  --shadow-bread: var(--shadow);
+}
+
 body {
   margin: 0;
 }
