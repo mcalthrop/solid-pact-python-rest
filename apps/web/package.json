@@ -11,14 +11,15 @@
     "lint:fix": "biome check --write .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "openapi:generate": "node -e \"console.log('web: openapi:generate — see PLAN §4.2')\"",
-    "openapi:validate": "node -e \"console.log('web: openapi:validate — see packages/openapi')\""
+    "openapi:generate": "openapi-ts -f openapi-ts.config.ts",
+    "openapi:validate": "pnpm --filter @solid-pact/openapi run lint"
   },
   "dependencies": {
     "solid-js": "1.9.12"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.10",
+    "@hey-api/openapi-ts": "0.95.0",
     "@solidjs/testing-library": "0.8.10",
     "@types/node": "24.12.0",
     "jsdom": "29.0.1",
