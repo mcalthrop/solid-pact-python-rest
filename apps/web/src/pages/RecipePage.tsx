@@ -5,7 +5,6 @@ import type { RecipeDetail } from '@/api';
 import { getRecipeById } from '@/api';
 import { RecipeDetailBody } from '@/components/recipe-detail/RecipeDetailBody';
 import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import './Page.css';
 
 export const RecipePage = (): JSX.Element => {
@@ -27,10 +26,7 @@ export const RecipePage = (): JSX.Element => {
   return (
     <article class="page recipe-detail" aria-labelledby="recipe-title">
       <p class="recipe-detail-back">
-        <A
-          class={cn(buttonVariants({ variant: 'link', size: 'link' }))}
-          href="/"
-        >
+        <A class={buttonVariants({ variant: 'link', size: 'link' })} href="/">
           ← All recipes
         </A>
       </p>
