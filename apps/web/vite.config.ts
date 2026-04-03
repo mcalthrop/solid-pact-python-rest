@@ -1,6 +1,7 @@
 /// <reference types="vitest/config" />
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import solid from 'vite-plugin-solid';
 
@@ -12,7 +13,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  plugins: [solid()],
+  plugins: [tailwindcss(), solid()],
   test: {
     environment: 'jsdom',
     globals: true,

@@ -162,17 +162,6 @@
   margin: 0 0 1rem;
 }
 
-.recipe-detail-back-link {
-  font-size: 0.95rem;
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.recipe-detail-back-link:hover {
-  color: var(--accent-hover);
-  text-decoration: underline;
-}
-
 .recipe-detail-header {
   margin-bottom: 1rem;
 }

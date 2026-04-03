@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
 :root {
   /*
    * Surfaces: warm flour / crust / wheat (bread).

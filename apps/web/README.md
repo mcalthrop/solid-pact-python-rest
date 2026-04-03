@@ -35,7 +35,11 @@ Configuration: **`biome.json`** (Biome **2.4.x**), **`vite.config.ts`** (include
 
 ## App shell (PLAN §4.3)
 
-Routing uses [**`@solidjs/router`**](https://github.com/solidjs/solid-router): **`Router`** with a shared **`AppShell`** layout (header, main outlet, footer). Routes include **`/`** (home) and **`/recipes/:id`** (detail placeholder until §4.5). Global styles live in **`src/index.css`** (warm bread surfaces, cool complementary accents); layout CSS in **`src/layout/AppShell.css`**.
+Routing uses [**`@solidjs/router`**](https://github.com/solidjs/solid-router): **`Router`** with a shared **`AppShell`** layout (header, main outlet, footer). Routes include **`/`** (home) and **`/recipes/:id`** (detail). Global styles live in **`src/index.css`** (warm bread surfaces, cool complementary accents); layout CSS in **`src/layout/AppShell.css`**.
+
+## Component library (PLAN §4.5)
+
+**[shadcn-solid](https://shadcn-solid.com/)** — registry components under **`src/components/ui/`**, Tailwind v4, and **`cn()`**. Rationale and workflow: **[`COMPONENT_LIBRARY.md`](./COMPONENT_LIBRARY.md)**.
 
 ## OpenAPI client
 
