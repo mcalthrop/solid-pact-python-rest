@@ -45,17 +45,17 @@ export const Home = (): JSX.Element => {
         >
           <ul class="recipe-grid">
             <For each={recipes()}>
-              {(recipe: RecipeSummary) => (
+              {({ id, imageUrl, title, summary }: RecipeSummary) => (
                 <li class="recipe-grid-item">
                   <A
-                    href={`/recipes/${recipe.id}`}
+                    href={`/recipes/${id}`}
                     class="recipe-card"
-                    aria-labelledby={`recipe-title-${recipe.id}`}
+                    aria-labelledby={`recipe-title-${id}`}
                   >
                     <div class="recipe-card-media">
                       <img
                         class="recipe-card-image"
-                        src={recipe.imageUrl}
+                        src={imageUrl}
                         alt=""
                         width={320}
                         height={240}
@@ -64,13 +64,10 @@ export const Home = (): JSX.Element => {
                       />
                     </div>
                     <div class="recipe-card-body">
-                      <h3
-                        class="recipe-card-title"
-                        id={`recipe-title-${recipe.id}`}
-                      >
-                        {recipe.title}
+                      <h3 class="recipe-card-title" id={`recipe-title-${id}`}>
+                        {title}
                       </h3>
-                      <p class="recipe-card-summary">{recipe.summary}</p>
+                      <p class="recipe-card-summary">{summary}</p>
                     </div>
                   </A>
                 </li>

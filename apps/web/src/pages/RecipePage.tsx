@@ -45,28 +45,36 @@ export const RecipePage = (): JSX.Element => {
 
       <Show when={!recipe.loading && !recipe.error}>
         <Show when={recipe()} keyed>
-          {(r: RecipeDetail) => (
+          {({
+            title,
+            summary,
+            prepTimeMinutes,
+            bakeTimeMinutes,
+            imageUrlLarge,
+            ingredients,
+            steps,
+          }: RecipeDetail) => (
             <>
               <header class="recipe-detail-header">
                 <h2 id="recipe-title" class="page-title recipe-detail-title">
-                  {r.title}
+                  {title}
                 </h2>
-                <p class="lede recipe-detail-summary">{r.summary}</p>
+                <p class="lede recipe-detail-summary">{summary}</p>
                 <Show
                   when={
-                    r.prepTimeMinutes !== undefined ||
-                    r.bakeTimeMinutes !== undefined
+                    prepTimeMinutes !== undefined ||
+                    bakeTimeMinutes !== undefined
                   }
                 >
                   <p class="recipe-detail-times">
-                    <Show when={r.prepTimeMinutes !== undefined}>
+                    <Show when={prepTimeMinutes !== undefined}>
                       <span class="recipe-detail-time">
-                        Prep: {r.prepTimeMinutes} min
+                        Prep: {prepTimeMinutes} min
                       </span>
                     </Show>
-                    <Show when={r.bakeTimeMinutes !== undefined}>
+                    <Show when={bakeTimeMinutes !== undefined}>
                       <span class="recipe-detail-time">
-                        Bake: {r.bakeTimeMinutes} min
+                        Bake: {bakeTimeMinutes} min
                       </span>
                     </Show>
                   </p>
@@ -76,7 +84,7 @@ export const RecipePage = (): JSX.Element => {
               <div class="recipe-detail-hero">
                 <img
                   class="recipe-detail-image"
-                  src={r.imageUrlLarge}
+                  src={imageUrlLarge}
                   alt=""
                   width={720}
                   height={480}
@@ -93,8 +101,8 @@ export const RecipePage = (): JSX.Element => {
                   Ingredients
                 </h3>
                 <ul class="recipe-detail-list recipe-detail-list-ingredients">
-                  <For each={r.ingredients}>
-                    {(line: string) => <li>{line}</li>}
+                  <For each={ingredients}>
+                    {(line) => <li>{line}</li>}
                   </For>
                 </ul>
               </section>
@@ -107,7 +115,7 @@ export const RecipePage = (): JSX.Element => {
                   Steps
                 </h3>
                 <ol class="recipe-detail-list recipe-detail-list-steps">
-                  <For each={r.steps}>{(step: string) => <li>{step}</li>}</For>
+                  <For each={steps}>{(step) => <li>{step}</li>}</For>
                 </ol>
               </section>
             </>
