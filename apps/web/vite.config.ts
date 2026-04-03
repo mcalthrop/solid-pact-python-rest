@@ -1,8 +1,17 @@
 /// <reference types="vitest/config" />
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import solid from 'vite-plugin-solid';
 
+const __dirname: string = path.dirname(fileURLToPath(import.meta.url));
+
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
   plugins: [solid()],
   test: {
     environment: 'jsdom',

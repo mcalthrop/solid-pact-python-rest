@@ -1,0 +1,13 @@
+---
+description: Path alias @/ vs relative imports in apps/web TypeScript
+globs:
+  - apps/web/**/*.ts
+  - apps/web/**/*.tsx
+alwaysApply: false
+---
+
+# Path imports (`apps/web`)
+
+- **`@/…`** — Use for anything that would otherwise need **`../`** (imports from a parent directory). Configured in `tsconfig.app.json` and Vite.
+- **`./…`** — **Allowed** for same-folder / colocated modules (e.g. `./Page.css` next to a page, `./App` from a test in the same directory). Do not require rewriting these to `@/`.
+- **`../…`** — Disallowed by Biome `style/noRestrictedImports` (`../**`); use `@/` instead.

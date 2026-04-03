@@ -25,7 +25,18 @@
         "useExplicitType": "error"
       },
       "style": {
-        "noDefaultExport": "error"
+        "noDefaultExport": "error",
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "patterns": [
+              {
+                "group": ["../**"],
+                "message": "Use the @/ path alias (see tsconfig paths) instead of ../ — same-folder imports like ./file are fine."
+              }
+            ]
+          }
+        }
       }
     }
   },

@@ -1,0 +1,14 @@
+---
+description: Prefer const arrow functions; no function declarations in apps/web TS/TSX
+globs:
+  - apps/web/**/*.ts
+  - apps/web/**/*.tsx
+alwaysApply: false
+---
+
+# Function style (`apps/web`)
+
+- Use **`const name = (…) => { … }`** (or `async` arrows) for named functions, including exports. Do not use **`function name()`** declarations at module scope or nested in source files.
+- **Biome** `complexity/useArrowFunction` rewrites **function expressions** to arrows; it does **not** flag top-level `function` declarations ([Biome discussion #7108](https://github.com/biomejs/biome/discussions/7108)).
+- **`pnpm lint`** (and **`pnpm --filter web lint`**) also runs **`scripts/assert-no-function-declarations.mjs`**, which fails if a declaration line appears in hand-written code under `src/` (excluding `generated/`) or in `vite.config.ts` / `openapi-ts.config.ts`.
+- Generated OpenAPI output under **`src/api/generated/`** is exempt from that script.
