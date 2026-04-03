@@ -1,25 +1,13 @@
-import { createSignal } from 'solid-js';
-import './App.css';
+import { Route, Router } from '@solidjs/router';
+import AppShell from './layout/AppShell';
+import Home from './pages/Home';
+import RecipePage from './pages/RecipePage';
 
-function App() {
-  const [count, setCount] = createSignal(0);
-
+export default function App() {
   return (
-    <main class="app">
-      <h1>Bread Recipes</h1>
-      <p class="lede">
-        SolidJS + Vite scaffold (PLAN §4.1). Replace this with the real UI in
-        later tasks.
-      </p>
-      <button
-        type="button"
-        class="counter"
-        onClick={() => setCount((c) => c + 1)}
-      >
-        Count is {count()}
-      </button>
-    </main>
+    <Router root={AppShell}>
+      <Route path="/" component={Home} />
+      <Route path="/recipes/:id" component={RecipePage} />
+    </Router>
   );
 }
-
-export default App;

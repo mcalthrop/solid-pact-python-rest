@@ -16,6 +16,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@solidjs/router':
+        specifier: 0.16.1
+        version: 0.16.1(solid-js@1.9.12)
       solid-js:
         specifier: 1.9.12
         version: 1.9.12
@@ -28,7 +31,7 @@ importers:
         version: 0.95.0(typescript@5.9.3)
       '@solidjs/testing-library':
         specifier: 0.8.10
-        version: 0.8.10(solid-js@1.9.12)
+        version: 0.8.10(@solidjs/router@0.16.1(solid-js@1.9.12))(solid-js@1.9.12)
       '@types/node':
         specifier: 24.12.0
         version: 24.12.0
@@ -557,6 +560,11 @@ packages:
 
   '@rolldown/pluginutils@1.0.0-rc.12':
     resolution: {integrity: sha512-HHMwmarRKvoFsJorqYlFeFRzXZqCt2ETQlEDOb9aqssrnVBB1/+xgTGtuTrIk5vzLNX1MjMtTf7W9z3tsSbrxw==}
+
+  '@solidjs/router@0.16.1':
+    resolution: {integrity: sha512-IhyjedgC6LRpw/8CPGGI89FrV+r0xTHzOl2c4CRyzYQ1bLepJxbVI1LLKvsavMWY5TRBRacV7hAeOhuTXkjiqg==}
+    peerDependencies:
+      solid-js: ^1.8.6
 
   '@solidjs/testing-library@0.8.10':
     resolution: {integrity: sha512-qdeuIerwyq7oQTIrrKvV0aL9aFeuwTd86VYD3afdq5HYEwoox1OBTJy4y8A3TFZr8oAR0nujYgCzY/8wgHGfeQ==}
@@ -2548,10 +2556,16 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.0-rc.12': {}
 
-  '@solidjs/testing-library@0.8.10(solid-js@1.9.12)':
+  '@solidjs/router@0.16.1(solid-js@1.9.12)':
+    dependencies:
+      solid-js: 1.9.12
+
+  '@solidjs/testing-library@0.8.10(@solidjs/router@0.16.1(solid-js@1.9.12))(solid-js@1.9.12)':
     dependencies:
       '@testing-library/dom': 10.4.1
       solid-js: 1.9.12
+    optionalDependencies:
+      '@solidjs/router': 0.16.1(solid-js@1.9.12)
 
   '@standard-schema/spec@1.1.0': {}
 
