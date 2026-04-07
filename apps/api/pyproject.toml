@@ -31,7 +31,7 @@ exclude = ["**/app/**/*_test.py"]
 testpaths = ["app"]
 pythonpath = ["."]
 python_files = ["*_test.py"]
-addopts = "-q --cov=app --cov-report=term-missing"
+addopts = "-q"
 
 [tool.coverage.run]
 relative_files = true
