@@ -34,13 +34,13 @@ From **`apps/api`** with dev dependencies installed (**`pip install -e ".[dev]"`
 pnpm test
 ```
 
-This runs **`pytest`** with **line coverage** for the **`app`** package, **fails under 100%**, and **omits** generated **`app/openapi/generated/`** (codegen output). To run tests without coverage (faster iteration):
+This runs **`pytest`** without coverage for faster iteration.
 
 ```bash
-.venv/bin/python -m pytest --no-cov
+pnpm test:coverage
 ```
 
-Configuration lives in **`pyproject.toml`** (**`[tool.pytest.ini_options]`**, **`[tool.coverage.*]`**).
+The coverage variant runs **`pytest`** with **line coverage** for the **`app`** package, **fails under 100%**, and **omits** generated **`app/openapi/generated/`** (codegen output). Configuration lives in **`pyproject.toml`** (**`[tool.pytest.ini_options]`**, **`[tool.coverage.*]`**).
 
 ## Import order (Ruff / isort)
 

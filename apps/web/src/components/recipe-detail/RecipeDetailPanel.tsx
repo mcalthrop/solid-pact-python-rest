@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Heading3Panel } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
-export type RecipeDetailPanelProps = ComponentProps<'section'> & {
+type RecipeDetailPanelProps = ComponentProps<'section'> & {
   headingId: string;
   heading: string;
   children: JSX.Element;

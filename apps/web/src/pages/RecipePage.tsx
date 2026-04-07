@@ -8,6 +8,7 @@ import { RecipeDetailBody } from '@/components/recipe-detail/RecipeDetailBody';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { LoadingRegion } from '@/components/ui/loading-region';
 import { Skeleton } from '@/components/ui/skeleton';
+import { formatFetchError } from '@/lib/format-fetch-error';
 
 export const RecipePage = (): JSX.Element => {
   const params = useParams<{ id: string }>();
@@ -40,9 +41,7 @@ export const RecipePage = (): JSX.Element => {
       <Show when={recipe.error} keyed>
         {(err: unknown) => (
           <Alert variant="destructive">
-            <AlertDescription>
-              {err instanceof Error ? err.message : String(err)}
-            </AlertDescription>
+            <AlertDescription>{formatFetchError(err)}</AlertDescription>
           </Alert>
         )}
       </Show>

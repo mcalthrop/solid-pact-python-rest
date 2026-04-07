@@ -19,6 +19,8 @@
     "openapi:validate": {
       "cache": false
     },
-    "test": {}
+    "test": {},
+    "test:coverage": {},
+    "knip": {}
   }
 }
