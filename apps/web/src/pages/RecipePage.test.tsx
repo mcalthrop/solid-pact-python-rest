@@ -32,6 +32,22 @@ const renderRecipePage = (): ReturnType<typeof render> => {
 };
 
 describe('RecipePage', () => {
+  it('shows a loading state while the recipe is fetched', async () => {
+    const gate = Promise.withResolvers<void>();
+    server.use(
+      http.get(`${API_BASE}/recipes/:recipeId`, async () => {
+        await gate.promise;
+        return HttpResponse.json(recipeDetail);
+      }),
+    );
+    renderRecipePage();
+    expect(await screen.findByText('Loading recipe…')).toBeTruthy();
+    gate.resolve();
+    expect(
+      await screen.findByRole('heading', { level: 2, name: 'Test loaf' }),
+    ).toBeTruthy();
+  });
+
   it('renders the recipe heading when the API returns detail', async () => {
     server.use(
       http.get(`${API_BASE}/recipes/:recipeId`, ({ params }) => {
@@ -56,5 +72,19 @@ describe('RecipePage', () => {
     renderRecipePage();
     const alert = await screen.findByRole('alert');
     expect(alert.textContent).toContain('Not found');
+  });
+
+  it('keeps the page shell when the API returns no recipe payload', async () => {
+    server.use(
+      http.get(`${API_BASE}/recipes/:recipeId`, () => HttpResponse.json(null)),
+    );
+    renderRecipePage();
+    expect(
+      await screen.findByRole('link', { name: /all recipes/i }),
+    ).toBeTruthy();
+    expect(
+      screen.queryByRole('heading', { level: 2, name: 'Test loaf' }),
+    ).toBeNull();
+    expect(screen.queryByRole('alert')).toBeNull();
   });
 });

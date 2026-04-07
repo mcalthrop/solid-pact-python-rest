@@ -29,6 +29,12 @@ describe('Home', () => {
     expect(await screen.findByText(/No recipes to show yet/i)).toBeTruthy();
   });
 
+  it('treats a null API payload as an empty recipe list', async () => {
+    server.use(http.get(`${API_BASE}/recipes`, () => HttpResponse.json(null)));
+    renderHome();
+    expect(await screen.findByText(/No recipes to show yet/i)).toBeTruthy();
+  });
+
   it('shows empty state when the API returns no recipes', async () => {
     server.use(http.get(`${API_BASE}/recipes`, () => HttpResponse.json([])));
     renderHome();

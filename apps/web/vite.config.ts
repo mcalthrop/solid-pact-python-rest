@@ -39,6 +39,7 @@ export default defineConfig({
       // Line/function/statement gates match the project requirement for full coverage. Branch
       // probes on Solid/JSX trees are noisy in v8 (often ~50% per node); omitting branch thresholds
       // avoids a misleading CI failure while keeping strict line coverage.
+      // See https://github.com/solidjs/solid/issues/2138
       thresholds: {
         lines: 100,
         functions: 100,
