@@ -37,7 +37,7 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      - name: Knip (web)
+      - name: Knip
         run: pnpm knip
 
       - name: Test (API 100% line coverage gate)
