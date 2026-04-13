@@ -8,5 +8,9 @@
     "src/components/ui/**",
     "src/api/index.ts"
   ],
-  "ignoreDependencies": ["tailwindcss", "tailwindcss-animate"]
+  "ignoreDependencies": [
+    "@pact-foundation/pact-cli",
+    "tailwindcss",
+    "tailwindcss-animate"
+  ]
 }
