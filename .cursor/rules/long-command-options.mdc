@@ -1,0 +1,24 @@
+---
+description: Prefer long-form command-line options
+alwaysApply: true
+---
+
+# Long-Form Command Options
+
+- Prefer long-form command-line options whenever the tool supports them.
+- Avoid short flags such as `-u`, `-p`, `-r`, or `-m` when the equivalent long option is available.
+- This applies to shell commands, scripts, documentation examples, and generated command snippets.
+
+Examples:
+
+```bash
+# Prefer
+git fetch --prune
+git push --set-upstream origin HEAD
+docker compose up --detach
+
+# Avoid
+git fetch -p
+git push -u origin HEAD
+docker compose up -d
+```

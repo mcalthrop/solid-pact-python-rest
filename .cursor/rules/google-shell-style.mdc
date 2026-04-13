@@ -1,0 +1,29 @@
+---
+description: Follow Google Shell Style Guide for Bash scripts
+globs: **/*.sh
+alwaysApply: false
+---
+
+# Google Shell Style Guide
+
+- For Bash scripts, follow the [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html).
+- Prefer Bash patterns, naming, quoting, functions, and error-handling conventions from that guide.
+- Keep scripts readable and conservative: use `set -euo pipefail` when appropriate, quote expansions, and prefer clear long-form options when available.
+- Write new Bash in a style consistent with the guide rather than ad hoc shell habits.
+
+Examples:
+
+```bash
+# Prefer
+main() {
+  local branch_name="$1"
+  git fetch origin --prune
+  git checkout "${branch_name}"
+}
+
+main "$@"
+
+# Avoid
+f(){ git fetch origin -p; git checkout $1; }
+f $@
+```

@@ -15,14 +15,6 @@ export default defineConfig({
   },
   plugins: [tailwindcss(), solid()],
   test: {
-    environment: 'jsdom',
-    globals: true,
-    include: ['src/**/*.{test,spec}.{ts,tsx}'],
-    // See src/test/vitest-no-jest-dom.ts — prevents vite-plugin-solid from injecting jest-dom.
-    setupFiles: ['src/test/vitest-no-jest-dom.ts', 'src/test/vitest-setup.ts'],
-    env: {
-      VITE_API_BASE_URL: 'http://127.0.0.1:8000',
-    },
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json-summary'],
@@ -46,5 +38,38 @@ export default defineConfig({
         statements: 100,
       },
     },
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'unit',
+          environment: 'jsdom',
+          globals: true,
+          include: ['src/**/*.test.{ts,tsx}'],
+          // See src/test/vitest-no-jest-dom.ts — prevents vite-plugin-solid from injecting jest-dom.
+          setupFiles: [
+            'src/test/vitest-no-jest-dom.ts',
+            'src/test/vitest-setup.ts',
+          ],
+          env: {
+            VITE_API_BASE_URL: 'http://127.0.0.1:8000',
+          },
+        },
+      },
+      {
+        resolve: {
+          alias: {
+            '@': path.resolve(__dirname, 'src'),
+          },
+        },
+        test: {
+          name: 'pact',
+          environment: 'node',
+          globals: true,
+          include: ['pact/**/*.pact.test.ts'],
+          testTimeout: 30_000,
+        },
+      },
+    ],
   },
 });

@@ -30,6 +30,8 @@ Run from **`apps/web`** (or via **`pnpm --filter web <script>`** from the root):
 | **`pnpm lint:fix`**| Biome with **`--write`** (fix + format)     |
 | **`pnpm test`**   | Vitest once (`vitest run`)                   |
 | **`pnpm test:watch`** | Vitest watch                             |
+| **`pnpm pact:consumer-test`** | Runs the dedicated Pact consumer tests and writes pact files to **`pacts/`**. |
+| **`pnpm pact:consumer-publish`** | Publishes the generated pact files to the broker configured by environment variables. |
 
 Configuration: **`biome.json`** (Biome **2.4.x**), **`vite.config.ts`** (includes Vitest), **`tsconfig.*.json`**.
 
@@ -51,3 +53,24 @@ The UI uses a **full fetch-based client** generated from **`../../packages/opena
 | **`pnpm openapi:validate`** | Runs **`redocly lint`** on **`packages/openapi/openapi.yaml`** via **`@solid-pact/openapi`** (same as **`pnpm --filter @solid-pact/openapi run lint`**). |
 
 Import the wrapped SDK from **`src/api/index.ts`** (e.g. **`listRecipes`**, **`getRecipeById`**, **`apiClient`**, and schema types). By default, **`VITE_API_BASE_URL`** is unset in production builds (same-origin requests). In **`pnpm dev`**, the client targets **`http://127.0.0.1:8000`** unless you set **`VITE_API_BASE_URL`**. See **`.env.example`**.
+
+## Pact consumer contracts
+
+Consumer Pact tests live under **`pact/`** and run with a separate Vitest config so they exercise the generated API client in a Node environment rather than jsdom.
+
+Generate pact files locally:
+
+```bash
+pnpm pact:consumer-test
+```
+
+Publish those pact files to a broker:
+
+```bash
+PACT_BROKER_BASE_URL=http://127.0.0.1:9292 \
+  PACT_BROKER_USERNAME=pact \
+  PACT_BROKER_PASSWORD=pact \
+  pnpm pact:consumer-publish
+```
+
+CI uses the same publish script, passing **`PACT_CONSUMER_VERSION`** and **`PACT_CONSUMER_BRANCH`** from GitHub metadata.

@@ -10,7 +10,7 @@ FastAPI ASGI service: **`GET /health`**, **`GET /recipes`**, and **`GET /recipes
 
 ## Prerequisites
 
-- Python **3.12** or newer
+- Python **3.13** or newer
 - A virtual environment (recommended)
 
 ## Setup
@@ -21,7 +21,8 @@ If you create the venv yourself (without **`pnpm install`**), install the editab
 
 ```bash
 cd apps/api
-python3 -m venv .venv
+rm -rf .venv
+python3.13 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 ```
@@ -41,6 +42,16 @@ pnpm test:coverage
 ```
 
 The coverage variant runs **`pytest`** with **line coverage** for the **`app`** package, **fails under 100%**, and **omits** generated **`app/openapi/generated/`** (codegen output). Configuration lives in **`pyproject.toml`** (**`[tool.pytest.ini_options]`**, **`[tool.coverage.*]`**).
+
+Provider contract verification:
+
+```bash
+pnpm pact:provider-verify
+```
+
+If **`PACT_BROKER_BASE_URL`** is set, the verifier pulls contracts from that broker and publishes verification results in CI. Without broker settings, it falls back to local pact files under **`apps/web/pacts/`** so you can run the consumer + provider loop locally after **`pnpm pact:consumer-test`**.
+
+In the current GitHub Actions workflow, the full Pact flow is exercised via the root **`pnpm pact:verify`** helper, which starts the local broker from **`docker-compose.yml`** before publishing and verifying.
 
 ## Import order (Ruff / isort)
 
