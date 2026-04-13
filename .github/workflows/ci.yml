@@ -43,6 +43,9 @@ jobs:
       - name: Test (API 100% line coverage gate)
         run: pnpm test:coverage
 
+      - name: Pact contract flow
+        run: pnpm pact:verify
+
       - name: Generate OpenAPI code
         run: pnpm openapi:generate
 

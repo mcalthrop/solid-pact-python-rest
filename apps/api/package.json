@@ -9,8 +9,12 @@
     "openapi:validate": "bash scripts/validate_openapi_generated.sh",
     "lint": "pnpm build && .venv/bin/ruff check app",
     "lint:fix": ".venv/bin/ruff check app --fix",
+    "pact:provider-verify": "bash scripts/pact-provider-verify.sh",
     "test": ".venv/bin/python -m pytest -v",
     "test:coverage": "pnpm test --cov=app --cov-report=term-missing",
     "postinstall": "bash -e -c 'test -d .venv || python3 -m venv .venv; .venv/bin/python -m pip install -e \".[dev]\"'"
+  },
+  "devDependencies": {
+    "@pact-foundation/pact-cli": "18.0.0"
   }
 }

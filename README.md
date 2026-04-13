@@ -12,7 +12,7 @@ You can work in other editors, but Cursor is the intended environment.
 
 The REST API is defined in **`packages/openapi/openapi.yaml`** (shared by the Python API and the front end). From the repository root, **`pnpm lint`** runs **[Redocly](https://redocly.com/docs/cli/)** on that spec (via **`@solid-pact/openapi`**) together with the other workspace lint tasks.
 
-The **CI** workflow (`.github/workflows/ci.yml`) runs **`pnpm lint`**, **`pnpm test`**, **`pnpm openapi:generate`**, and **`pnpm openapi:validate`** (among the other setup steps) on pushes to `main` and on every pull request.
+The **CI** workflow (`.github/workflows/ci.yml`) runs **`pnpm lint`**, **`pnpm test`**, **`pnpm pact:verify`**, **`pnpm openapi:generate`**, and **`pnpm openapi:validate`** (among the other setup steps) on pushes to `main` and on every pull request.
 
 When you add or upgrade Node dependencies, run **`pnpm install`** with the **pnpm** version pinned in **`packageManager`** (via Corepack). Using a different pnpm release can rewrite **`pnpm-lock.yaml`** in an incompatible way (for example changing the lockfile format).
 
@@ -54,13 +54,17 @@ See [pnpm installation](https://pnpm.io/installation) for other options.
 
 ## Scripts (root delegates to workspaces)
 
-All root **`package.json`** scripts delegate to **Turborepo**, which runs the matching script in each workspace (e.g. `apps/web`, `apps/api`). Run them from the repository root with **pnpm** only:
+Most root **`package.json`** scripts delegate to **Turborepo**; the Pact scripts target the relevant workspace directly with **pnpm --filter** because only the web and API packages participate in that flow. Run them from the repository root with **pnpm** only:
 
 ```bash
 pnpm build
 pnpm dev
 pnpm lint
 pnpm test
+pnpm pact:consumer-test
+pnpm pact:consumer-publish
+pnpm pact:provider-verify
+pnpm pact:verify
 pnpm openapi:generate
 pnpm openapi:validate
 ```
@@ -77,3 +81,33 @@ Or use Turborepo’s filter directly:
 ```bash
 pnpm turbo build --filter=web
 ```
+
+## Pact Broker
+
+The repo includes a local self-hosted Pact Broker in **`docker-compose.yml`** (PostgreSQL + Pact Broker). Development defaults:
+
+| Setting | Value |
+| ------- | ----- |
+| URL | `http://127.0.0.1:9292` |
+| Username | `pact` |
+| Password | `pact` |
+
+Run the full local flow from the repository root:
+
+```bash
+pnpm pact:verify
+```
+
+That helper starts Docker Compose, waits for the broker heartbeat, runs the web consumer Pact tests, publishes the generated pacts, verifies the Python provider, then shuts the broker down again.
+
+If you want to run the pieces separately:
+
+```bash
+pnpm pact:broker:up
+pnpm pact:consumer-test
+pnpm pact:consumer-publish
+pnpm pact:provider-verify
+pnpm pact:broker:down
+```
+
+CI uses the same local Docker Compose broker as the manual **`pnpm pact:verify`** command, so it does not require Pact Broker secrets.

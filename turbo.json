@@ -13,6 +13,15 @@
     "lint:fix": {
       "cache": false
     },
+    "pact:consumer-test": {
+      "cache": false
+    },
+    "pact:consumer-publish": {
+      "cache": false
+    },
+    "pact:provider-verify": {
+      "cache": false
+    },
     "openapi:generate": {
       "cache": false
     },

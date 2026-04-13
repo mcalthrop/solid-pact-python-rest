@@ -36,9 +36,9 @@ Tasks and subtasks for building the bread-recipes app (SolidJS + Python REST + O
 
 ## 5. Contract testing (Pact)
 
-- [ ] **5.1** Consumer: add Pact tests for the API usage the UI relies on; publish pacts (targeting your broker URL via secrets in CI).
-- [ ] **5.2** Provider: verify the Python API against published pacts in CI; fail the build on verification failures.
-- [ ] **5.3** Document self-hosted Pact Broker expectations (URL, auth, tags/branches) and wire GitHub Actions secrets accordingly.
+- [x] **5.1** Consumer: add Pact tests for the API usage the UI relies on; publish pacts (targeting your broker URL via secrets in CI).
+- [x] **5.2** Provider: verify the Python API against published pacts in CI; fail the build on verification failures.
+- [x] **5.3** Document self-hosted Pact Broker expectations (URL, auth, tags/branches) and wire GitHub Actions secrets accordingly.
 
 ## 6. CI/CD and local quality gates
 
