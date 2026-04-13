@@ -10,7 +10,7 @@ FastAPI ASGI service: **`GET /health`**, **`GET /recipes`**, and **`GET /recipes
 
 ## Prerequisites
 
-- Python **3.12** or newer
+- Python **3.13** or newer
 - A virtual environment (recommended)
 
 ## Setup
@@ -21,6 +21,7 @@ If you create the venv yourself (without **`pnpm install`**), install the editab
 
 ```bash
 cd apps/api
+rm -rf .venv
 python3.13 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"

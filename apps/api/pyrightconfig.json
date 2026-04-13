@@ -1,7 +1,7 @@
 {
   "include": ["app"],
   "exclude": [".venv", "**/__pycache__"],
-  "pythonVersion": "3.12",
+  "pythonVersion": "3.13",
   "venvPath": ".",
   "venv": ".venv"
 }
