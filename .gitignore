@@ -24,3 +24,6 @@ htmlcov/
 *.egg-info/
 dist/
 build/
+
+# AI tools
+.claude
