@@ -20,5 +20,11 @@
   },
   "devDependencies": {
     "turbo": "2.5.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "protobufjs@<7.5.5": ">=7.5.5",
+      "dompurify@<=3.3.3": ">=3.4.0"
+    }
   }
 }
